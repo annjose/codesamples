@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Grid Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../start/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="grid.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- This example taken from http://examples.getbootstrap.com/grid/ and http://getbootstrap.com/css/#grid and modified for this workshop -->
+
+    <div class="container">
+
+      <h2 id="grid-options">Grid options</h2>
+<p>See how aspects of the Bootstrap grid system work across multiple devices with a handy table.</p>
+<div class="bs-table-scrollable">
+  <table class="table table-bordered table-striped bs-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Extra small devicesPhones (&lt;768px)</th>
+        <th>Small devicesTablets (&gt;768px)</th>
+        <th>Medium devicesDesktops (&gt;992px)</th>
+        <th>Large devicesDesktops (&gt;1200px)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Grid behavior</th>
+        <td>Horizontal at all times</td>
+        <td colspan="3">Collapsed to start, horizontal above breakpoints</td>
+      </tr>
+      <tr>
+        <th>Max container width</th>
+        <td>None (auto)</td>
+        <td>720px</td>
+        <td>940px</td>
+        <td>1140px</td>
+      </tr>
+      <tr>
+        <th>Class prefix</th>
+        <td><code>.col-xs</code></td>
+        <td><code>.col-sm-</code></td>
+        <td><code>.col-md-</code></td>
+        <td><code>.col-lg-</code></td>
+      </tr>
+      <tr>
+        <th># of columns</th>
+        <td colspan="4">12</td>
+      </tr>
+      <tr>
+        <th>Max column width</th>
+        <td>Auto</td>
+        <td>60px</td>
+        <td>78px</td>
+        <td>95px</td>
+      </tr>
+      <tr>
+        <th>Gutter width</th>
+        <td colspan="4">30px (15px on each side of a column)</td>
+      </tr>
+      <tr>
+        <th>Nestable</th>
+        <td colspan="4">Yes</td>
+      </tr>
+      <tr>
+        <th>Offsets</th>
+        <td colspan="1">N/A</td>
+        <td colspan="3">Yes</td>
+      </tr>
+      <tr>
+        <th>Column ordering</th>
+        <td>N/A</td>
+        <td colspan="3">Yes</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Jen's master example grid</h2>
+  <p>This grid is designed to have 3 evenly sized lg columns, 1 narrow 2 wide md, 1 wide 1 narrow 1 wide sm, 2 wide 1 narrow xs.</p>
+  <p class="visible-lg">This is the large grid displaying. The grid stacks horizontally &lt; 1200px. </p>
+  <p class="visible-md">This is the medium grid displaying. The grid stacks horizontally &lt; 992px. </p>
+  <p class="visible-sm">This is the small grid displaying. The grid stacks horizontally &lt; 768px. </p>
+  <p class="visible-xs">This is the extra small grid displaying. This grid is always horizontal. </p>
+
+      <div class="row">
+        <div class="col-lg-4 col-md-1 col-sm-5 col-xs-5">.col-lg-4 .col-md-1 .col-sm-5 .col-xs-5</div>
+        <div class="col-lg-4 col-md-5 col-sm-1 col-xs-6">.col-lg-4 .col-md-5 .col-sm-1 .col-xs-6</div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-1">.col-lg-4 .col-md-6 .col-sm-6 .col-xs-1</div>
+      </div>
+
+      <h2>Bootstrap grids</h2>
+      <p class="lead">Basic grid layouts to get you familiar with building within the Bootstrap grid system.</p>
+
+      <h4>Three equal columns</h4>
+  <p class="visible-lg">This is the large grid displaying. The grid stacks horizontally &lt; 1200px. </p>
+
+      <div class="row">
+        <div class="col-lg-4">.col-lg-4</div>
+        <div class="col-lg-4">.col-lg-4</div>
+        <div class="col-lg-4">.col-lg-4</div>
+      </div>
+
+      <h4>Three unequal columns</h4>
+      <div class="row">
+        <div class="col-lg-3">.col-lg-3</div>
+        <div class="col-lg-6">.col-lg-6</div>
+        <div class="col-lg-3">.col-lg-3</div>
+      </div>
+
+      <h4>Two columns</h4>
+      <div class="row">
+        <div class="col-lg-8">.col-lg-8</div>
+        <div class="col-lg-4">.col-lg-4</div>
+      </div>
+
+      <h4>Full width, single column</h4>
+      <p class="text-warning">No grid classes are necessary for full-width elements.</p>
+
+      <h4>Two columns with two nested columns</h4>
+      <div class="row">
+        <div class="col-lg-8">
+          .col-lg-8
+          <div class="row">
+            <div class="col-lg-6">.col-lg-6</div>
+            <div class="col-lg-6">.col-lg-6</div>
+          </div>
+        </div>
+        <div class="col-lg-4">.col-lg-4</div>
+      </div>
+
+      <h4>Mixed: mobile (xs) and desktop (lg)</h4>
+        <p class="visible-lg">This is the large grid displaying. The grid stacks horizontally &lt; 1200px. </p>
+  <p class="visible-xs visible-md visible-sm">This is the extra small grid displaying. This grid is always horizontal. </p>
+      <div class="row">
+        <div class="col-12-xs col-lg-8">.col-12-xs .col-lg-8</div>
+        <div class="col-6-xs col-lg-4">.col-6-xs .col-lg-4</div>
+      </div>
+      <div class="row">
+        <div class="col-6-xs col-lg-4">.col-6-xs .col-lg-4</div>
+        <div class="col-6-xs col-lg-4">.col-6-xs .col-lg-4</div>
+        <div class="col-6-xs col-lg-4">.col-6-xs .col-lg-4</div>
+      </div>
+      <div class="row">
+        <div class="col-6-xs col-lg-6">.col-6-xs .col-lg-6</div>
+        <div class="col-6-xs col-lg-6">.col-6-xs .col-lg-6</div>
+      </div>
+
+    <h4>Mixed: mobile (xs) and desktop (md)</h4>
+
+  <p class="visible-lg visible-md">This is the medium grid displaying. The grid stacks horizontally &lt; 992px. </p>
+  <p class="visible-xs visible-sm">This is the extra small grid displaying. This grid is always horizontal. </p>
+      <div class="row">
+        <div class="col-12-xs col-md-8">.col-12-xs .col-md-8</div>
+        <div class="col-6-xs col-md-4">.col-6-xs .col-md-4</div>
+      </div>
+      <div class="row">
+        <div class="col-6-xs col-md-4">.col-6-xs .col-md-4</div>
+        <div class="col-6-xs col-md-4">.col-6-xs .col-md-4</div>
+        <div class="col-6-xs col-md-4">.col-6-xs .col-md-4</div>
+      </div>
+      <div class="row">
+        <div class="col-6-xs col-md-6">.col-6-xs .col-md-6</div>
+        <div class="col-6-xs col-md-6">.col-6-xs .col-md-6</div>
+      </div>
+
+      <h4>Mixed: mobile (xs), tablet (sm), and desktop (lg)</h4>
+
+        <p class="visible-lg">This is the large grid displaying. The grid stacks horizontally &lt; 1200px. </p>
+    <p class="visible-sm visible-md">This is the small grid displaying. The grid stacks horizontally &lt; 768px. </p>
+  <p class="visible-xs">This is the extra small grid displaying. This grid is always horizontal. </p>
+      <div class="row">
+        <div class="col-12-xs col-sm-8 col-lg-8">.col-12-xs .col-sm-8 .col-lg-8</div>
+        <div class="col-6-xs col-sm-4 col-lg-4">.col-6-xs .col-sm-4 .col-lg-4</div>
+      </div>
+      <div class="row">
+        <div class="col-6-xs col-sm-4 col-lg-4">.col-6-xs .col-sm-4 .col-lg-4</div>
+        <div class="col-6-xs col-sm-4 col-lg-4">.col-6-xs .col-sm-4 .col-lg-4</div>
+        <div class="col-6-xs col-sm-4 col-lg-4">.col-6-xs .col-sm-4 .col-lg-4</div>
+      </div>
+      <div class="row">
+        <div class="col-6-xs col-sm-6 col-lg-6">.col-6-xs .col-sm-6 .col-lg-6</div>
+        <div class="col-6-xs col-sm-6 col-lg-6">.col-6-xs .col-sm-6 .col-lg-6</div>
+      </div>
+
+
+      <h4>Mixed: mobile (xs), tablet (sm), and desktop (lg) with different values</h4>
+        <p class="visible-lg">This is the large grid displaying. The grid stacks horizontally &lt; 1200px. </p>
+
+  <p class="visible-sm visible-md">This is the small grid displaying. The grid stacks horizontally &lt; 768px. </p>
+  <p class="visible-xs">This is the extra small grid displaying. This grid is always horizontal. </p>
+      <div class="row">
+        <div class="col-12-xs col-sm-4 col-lg-8">.col-12-xs .col-sm-4 .col-lg-8</div>
+        <div class="col-6-xs col-sm-8 col-lg-4">.col-6-xs .col-sm-8 .col-lg-4</div>
+      </div>
+      <div class="row">
+        <div class="col-6-xs col-sm-3 col-lg-4">.col-6-xs .col-sm-3 .col-lg-4</div>
+        <div class="col-6-xs col-sm-6 col-lg-4">.col-6-xs .col-sm-6 .col-lg-4</div>
+        <div class="col-6-xs col-sm-3 col-lg-4">.col-6-xs .col-sm-3 .col-lg-4</div>
+      </div>
+      <div class="row">
+        <div class="col-6-xs col-sm-6 col-lg-6">.col-6-xs .col-sm-6 .col-lg-6</div>
+        <div class="col-6-xs col-sm-6 col-lg-6">.col-6-xs .col-sm-6 .col-lg-6</div>
+      </div>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

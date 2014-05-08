@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <script type="text/javascript" src="/Content/Scripts/jquery-1.6.4.min.js"  charset="UTF-8"></script>
+    </head>
+    <body>    
+
+<div class="mainContent"> 
+        <div id="ius-sign-in-widget" style="height:300px;width:200px;"></div>
+        <br/>
+        <br/>
+        <hr/>
+        <br/>
+        <div id="ius-sign-up-widget"></div>
+        <br/>
+        <br/>
+        <hr/>
+        <br/>
+        <div id="ius-username-recovery-widget"></div>
+        <br/>
+        <br/>
+        <hr/>
+        <br/>
+        <div id="ius-password-recovery-widget"></div>
+        <br/>
+        <br/>
+        <hr/>
+        <br/>
+        <div id="ius-account-manager-widget"></div>
+
+        <script type="text/javascript" src="https://accounts-e2e.intuit.com/IUS-Plugins/scripts/ius.js" id="ius-script" data-widgets="sign-in,sign-up,username-recovery,password-recovery,account-manager"></script>
+       <script>
+           intuit.ius.signIn.setup({
+               offeringId: 'Intuit.cto.iam.ius',
+               offeringEnv: 'prd',
+               signUpUrl: 'signup.html',
+               signInHelpUrl: 'https://about.intuit.com',
+               accountRecoveryUrl: 'password-recovery.html',
+               signInBtnTextClicked: 'Hi there',
+               onSignInSuccess: signInSuccess,
+               onSignInFail: signInFail,
+               onLoad: onSignInLoad,
+               rememberMeExpires: 365,
+               enableFacebook: false,
+               horizontalLayout : false
+           });
+
+           function signInSuccess(data) {
+               console.log('sign in success');
+               alert(JSON.stringify(data)); window.location = "/Home/Index";
+           }
+           function signInFail() { console.log('sign in failed'); }
+           function onSignInLoad() { console.log('sign in widget has been loaded'); }
+           
+           intuit.ius.signUp.setup({
+               offeringId: 'Intuit.cto.iam.ius',
+               offeringEnv: 'prd',
+               signInUrl: 'index.html',
+               accountRecoveryUrl: 'password-recovery.html',
+               showMobilePhone: true,
+               showName: true,
+               termsOfServiceUrl: 'http://business.intuit.com/directory/terms.jsp',
+               rememberMeExpires: 365,
+               onSignUpSuccess: onSignUpSuccess,
+               onSignUpFail: onSignUpFail,
+               onLoad: onSignUpLoad
+           });
+
+           function onSignUpSuccess(data) {
+               console.log('sign up success'); alert(JSON.stringify(data));
+               window.location = "/Home/Index";
+           }
+           function onSignUpFail() { console.log('sign up fail'); }
+           function onSignUpLoad() { console.log('sign up widget has been loaded'); }
+           
+           //Username Recovery
+           intuit.ius.usernameRecovery.setup({
+               offeringId: 'Intuit.cto.iam.ius',
+               onLoad: onUserNameRecoveryLoad,
+               onRecoverSuccess: onUserNameRecoverySuccess,
+               sendingEmailText: "sending email..."
+           });
+
+           function onUserNameRecoveryLoad() { console.log('username recovery widget has been loaded'); }
+           function onUserNameRecoverySuccess(data) {
+               console.log('userName recovery success');
+               console.log(JSON.stringify(data));
+           }
+
+           //Password Recovery
+           intuit.ius.passwordRecovery.setup({
+               offeringId: 'Intuit.cto.iam.ius',
+               onLoad: onPasswordRecoveryLoad,
+               //onGetUserSuccess: onGetUserSuccess,
+               sendingEmailText: "sending email..."
+           });
+
+           function onPasswordRecoveryLoad() { console.log('password recovery widget has been loaded'); }
+           function onGetUserSuccess(data) {
+               console.log('password recovery get user success');
+               console.log(JSON.stringify(data));
+           }
+
+           //Account Manager
+           intuit.ius.accountManager.setup({
+               offeringId: 'Intuit.cto.iam.ius',
+               onLoad: onAccountManagerLoad
+           });
+
+           function onAccountManagerLoad() { console.log('Account Manager widget has been loaded'); }
+
+       </script>
+</div>
+        
+    </body>
+</html>

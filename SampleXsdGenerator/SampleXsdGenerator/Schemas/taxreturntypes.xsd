@@ -1,0 +1,1077 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xs:schema targetNamespace="http://cfp.intuit.com/service/taxreturn/types"
+	xmlns="http://cfp.intuit.com/service/taxreturn/types" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0"
+	xmlns:cfp="http://cfp.intuit.com/base">
+
+	<xs:import namespace="http://cfp.intuit.com/base"
+		schemaLocation="base.xsd" />
+
+
+	<xs:simpleType name="DocumentId">
+		<xs:annotation>
+			<xs:documentation>
+				Document Id for Data Platform Documents (Entity
+				Key)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".+" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="DocumentName">
+		<xs:annotation>
+			<xs:documentation>
+				Document name, should not be an empty string.
+				TODO:
+				Refactor later to use base.xsd's StringNE type.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".+" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="HoldReasonType">
+        <xs:annotation>
+            <xs:documentation>Classification of the reason why this filing is on hold.</xs:documentation> 
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+           <xs:enumeration value="LATE_LEGISLATION"/>
+           <xs:enumeration value="EARLY_FILER"/>
+           <xs:enumeration value="TAX_ACCURACY"/>
+ </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="HoldInfoType">
+        <xs:annotation>
+            <xs:documentation>Defines a reason for which the filing is being held.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="holdType" type="HoldReasonType"/>
+            <xs:element name="holdMessage" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Customer viewable message for reason the filing is on hold.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+	<xs:complexType name="TaxReturnSummary">
+		<xs:sequence>
+			<xs:element name="primaryName" type="FullName" minOccurs="0" />
+			<xs:element name="primaryDOB" type="xs:date" minOccurs="0" />
+			<xs:element name="spouseName" type="FullName" minOccurs="0" />
+			<xs:element name="spouseDOB" type="xs:date" minOccurs="0" />
+			<xs:element name="AGI" type="cfp:Money" minOccurs="0" />
+			<xs:element name="medicalExpenses" type="cfp:Money"
+				minOccurs="0" />
+			<xs:element name="interestPaid" type="cfp:Money"
+				minOccurs="0" />
+			<xs:element name="charitableContributions" type="cfp:Money"
+				minOccurs="0" />
+			<xs:element name="stateTax" type="cfp:Money" minOccurs="0" />
+			<xs:element name="numDependents" type="xs:int" minOccurs="0" />
+			<xs:element name="dependentNames" type="FullName"
+				minOccurs="0" maxOccurs="20" />
+			<xs:element name="hasForm1098" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element name="hasForm1099D" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element name="hasForm1099G" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element name="hasForm109I" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element name="hasForm1099R" type="xs:boolean"
+				minOccurs="0" />
+			<xs:element name="hasSchedA" type="xs:boolean" minOccurs="0" />
+			<xs:element name="hasSchedB" type="xs:boolean" minOccurs="0" />
+			<xs:element name="hasSchedG" type="xs:boolean" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	    <xs:simpleType name="PaymentMethodType">
+        <xs:annotation>
+            <xs:documentation>Payment method indicated during submission</xs:documentation> 
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+           <xs:enumeration value="Not defined"/>
+           <xs:enumeration value="Even Return"/>
+           <xs:enumeration value="Refund Return: Traditional Check"/>
+           <xs:enumeration value="Refund Return: Direct Deposit"/>
+           <xs:enumeration value="Refund Return: Refund Transfer"/>
+           <xs:enumeration value="BalanceDue Return: Traditional Check"/>
+           <xs:enumeration value="BalanceDue Return: Direct Debit"/>
+           <xs:enumeration value="BalanceDue Return: Credit Card Payment"/>
+        </xs:restriction>
+    </xs:simpleType>
+	
+		<xs:complexType name="AgencyReturnInformation">
+		<xs:sequence>
+			<xs:element name="returnStatus" type="ReturnState" />
+			<xs:element name="returnStatusDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="returnType" type="ReturnType" />
+			<xs:element name="filingType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						EFE filing type
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="taxAuthority" type="TaxAuthority">
+				<xs:annotation>
+					<xs:documentation>Two-letter code for the taxing authority (e.g.,
+						US, NY, CA, AZ)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+			<xs:element name="filingId" type="xs:string" />	
+			<xs:element name="refundInfo" type="RefundInfo"
+				minOccurs="0">
+			</xs:element>
+		
+			<xs:element name="taxReturnSummary" type="TaxReturnSummary"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						taxReturnSummary is defined per-return but for
+						now applies only to the Fed return
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="efileDetails" type="EfileDetails"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Detailed info from EFE for a given agency return
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+		<xs:complexType name="AgencyReturnInformationLite">
+		<xs:sequence>
+			<xs:element name="returnStatus" type="ReturnState" />
+			<xs:element name="returnStatusDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="taxAuthority" type="TaxAuthority"  minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Two-letter code for the taxing authority (e.g.,
+						US, NY, CA, AZ)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+	</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RefundInfo">
+		<xs:sequence>
+			<xs:element name="refundOrPaymentAmount" type="cfp:Money"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>amount of the customer's refund or payment due.  NOTE:  this is NEGATIVE for refund; POSITIVE for balance due</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="percentFundedForAckDate" type="xs:int"
+				minOccurs="0">
+							<xs:annotation>
+					<xs:documentation>An estimate of the percentage of people funded
+						who where
+						ack'd (accepted) on ackDate.
+								</xs:documentation>
+							</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:sequence>
+					<xs:element name="paidOnDate" type="xs:date" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="refundRangeTight" type="cfp:DateRange" />
+					<xs:element name="refundRangeLoose" type="cfp:DateRange" />
+			</xs:sequence>
+			</xs:choice>
+				<xs:element name="paymentMethodType" type="PaymentMethodType"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>How a customer gets/pays for his/her refund</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+
+ 	<xs:simpleType name="PayloadFormat">
+		<xs:restriction base="xs:string">
+		<xs:enumeration value="unknown">
+				<xs:annotation>
+					<xs:documentation>UNKNOWN</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="taxml">
+				<xs:annotation>
+					<xs:documentation>TaxML</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="formml">
+				<xs:annotation>
+					<xs:documentation>FormMl</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="tax">
+				<xs:annotation>
+					<xs:documentation>Tax File is legacy format </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="edi">
+				<xs:annotation>
+					<xs:documentation>EFE Specific</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ReturnState">
+		<xs:restriction base="xs:string">
+		<xs:enumeration value="NOT_STARTED">
+				<xs:annotation>
+					<xs:documentation>Tax return not started, does not exist
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="STARTED">
+				<xs:annotation>
+					<xs:documentation>Tax return started but not paid
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PAID">
+				<xs:annotation>
+					<xs:documentation>Tax return started and paid but not e-filed or
+						printed
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FILED_PRINT">
+				<xs:annotation>
+					<xs:documentation>Tax return printed for filing </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EFILED_PENDING">
+				<xs:annotation>
+					<xs:documentation>Tax return e-filed, pending acknowledgment
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EFILED_REJECTED">
+				<xs:annotation>
+					<xs:documentation>Tax return e-filed and rejected
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EFILED_ACCEPTED">
+				<xs:annotation>
+					<xs:documentation>Tax return e-filed and accepted
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EFILED_HAS_ERRORS">
+				<xs:annotation>
+					<xs:documentation>Tax return e-filed, has errors
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ReturnType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PERSONAL" />
+			<xs:enumeration value="BUSINESS" />
+		</xs:restriction>
+	</xs:simpleType>
+
+  	<xs:simpleType name="FilingAgencyType">
+        <xs:restriction base="xs:string">
+			<xs:enumeration value="AL-PARTNER-FILING"/> 
+			<xs:enumeration value="AL-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="CA-LLC-FILING"/> 
+			<xs:enumeration value="CA-PARTNER-FILING"/> 
+			<xs:enumeration value="CO-PARTNER-FILING"/> 
+			<xs:enumeration value="CO-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="IRS-PARTNER-FILING"/> 
+			<xs:enumeration value="IRS-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="IRS-PARTNER-AMENDED"/> 
+			<xs:enumeration value="FL-PARTNER-FILING"/>   
+			<xs:enumeration value="FL-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="GA-PARTNER-FILING"/> 
+			<xs:enumeration value="GA-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="IA-PARTNER-FILING"/> 
+			<xs:enumeration value="ID-PARTNER-FILING"/> 
+			<xs:enumeration value="IL-PARTNER-FILING"/> 
+			<xs:enumeration value="KS-PARTNER-FILING"/> 
+			<xs:enumeration value="KS-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="MA-PARTNER-FILING"/> 
+			<xs:enumeration value="MA-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="MD-PARTNER-FILING"/> 
+			<xs:enumeration value="MD-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="MI-PARTNER-FILING"/> 
+			<xs:enumeration value="MI-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="MN-PARTNER-FILING"/> 
+			<xs:enumeration value="MN-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="MT-PARTNER-FILING"/> 
+			<xs:enumeration value="MT-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="NJ-PARTNER-FILING"/> 
+			<xs:enumeration value="NJ-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="NY-PARTNER-FILING"/> 
+			<xs:enumeration value="NY-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="NY-PARTNER-PAYMENT"/> 
+			<xs:enumeration value="NY-PARTNER-AMENDED"/> 
+			<xs:enumeration value="NYC-PARTNER-FILING"/> 
+			<xs:enumeration value="NYC-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="NYC-PARTNER-AMENDED"/> 
+			<xs:enumeration value="PA-PARTNER-FILING"/> 
+			<xs:enumeration value="PA-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="PA-LLC-FILING"/> 
+			<xs:enumeration value="RI-PARTNER-FILING"/> 
+			<xs:enumeration value="SC-PARTNER-FILING"/> 
+			<xs:enumeration value="SC-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="TN-PARTNER-FILING"/> 
+			<xs:enumeration value="TN-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="TX-PARTNER-FILING"/> 
+			<xs:enumeration value="TX-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="UT-PARTNER-FILING"/> 
+			<xs:enumeration value="UT-PARTNER-EXTENSION"/> 
+			<xs:enumeration value="WI-PARTNER-FILING"/> 
+			<xs:enumeration value="WI-PARTNER-EXTENSION"/> 
+
+
+            <xs:enumeration value="IRS-IIT-FILING"/>
+             <xs:enumeration value="IRS-IIT-EXTENSION"/>
+            <xs:enumeration value="IRS-IIT-FOREIGN-EXTENSION"/>
+            
+            <xs:enumeration value="AL-IIT-FILING"/>
+            <xs:enumeration value="AK-IIT-FILING"/>
+            <xs:enumeration value="AZ-IIT-FILING"/>
+            <xs:enumeration value="AR-IIT-FILING"/>
+            <xs:enumeration value="CA-IIT-FILING"/>
+            <xs:enumeration value="CO-IIT-FILING"/>
+            <xs:enumeration value="CT-IIT-FILING"/>
+            <xs:enumeration value="DE-IIT-FILING"/>
+            <xs:enumeration value="DC-IIT-FILING"/>
+            <xs:enumeration value="FL-IIT-FILING"/>
+            <xs:enumeration value="GA-IIT-FILING"/>
+            <xs:enumeration value="HI-IIT-FILING"/>
+            <xs:enumeration value="ID-IIT-FILING"/>
+            <xs:enumeration value="IL-IIT-FILING"/>
+            <xs:enumeration value="IN-IIT-FILING"/>
+            <xs:enumeration value="IA-IIT-FILING"/>
+            <xs:enumeration value="KS-IIT-FILING"/>
+            <xs:enumeration value="KY-IIT-FILING"/>
+            <xs:enumeration value="LA-IIT-FILING"/>
+            <xs:enumeration value="ME-IIT-FILING"/>
+            <xs:enumeration value="MD-IIT-FILING"/>
+            <xs:enumeration value="MA-IIT-FILING"/>
+            <xs:enumeration value="MI-IIT-FILING"/>
+            <xs:enumeration value="MN-IIT-FILING"/>
+            <xs:enumeration value="MS-IIT-FILING"/>
+            <xs:enumeration value="MO-IIT-FILING"/>
+            <xs:enumeration value="MT-IIT-FILING"/>
+            <xs:enumeration value="NE-IIT-FILING"/>
+            <xs:enumeration value="NV-IIT-FILING"/>
+            <xs:enumeration value="NH-IIT-FILING"/>
+            <xs:enumeration value="NJ-IIT-FILING"/>
+            <xs:enumeration value="NM-IIT-FILING"/>
+            <xs:enumeration value="NY-IIT-FILING"/>
+            <xs:enumeration value="NC-IIT-FILING"/>
+            <xs:enumeration value="ND-IIT-FILING"/>
+            <xs:enumeration value="OH-IIT-FILING"/>
+            <xs:enumeration value="OK-IIT-FILING"/>
+            <xs:enumeration value="OR-IIT-FILING"/>
+            <xs:enumeration value="PA-IIT-FILING"/>
+            <xs:enumeration value="RI-IIT-FILING"/>
+            <xs:enumeration value="SC-IIT-FILING"/>
+            <xs:enumeration value="SD-IIT-FILING"/>
+            <xs:enumeration value="TN-IIT-FILING"/>
+            <xs:enumeration value="TX-IIT-FILING"/>
+            <xs:enumeration value="UT-IIT-FILING"/>
+            <xs:enumeration value="VT-IIT-FILING"/>
+            <xs:enumeration value="VA-IIT-FILING"/>
+            <xs:enumeration value="WA-IIT-FILING"/>
+            <xs:enumeration value="WV-IIT-FILING"/>
+            <xs:enumeration value="WI-IIT-FILING"/>
+            <xs:enumeration value="WY-IIT-FILING"/>
+            
+			<xs:enumeration value="AK-1040-FILING"/>  
+			<xs:enumeration value="AK-1040-FILING"/>  
+			<xs:enumeration value="FL-1040-FILING"/>  
+			<xs:enumeration value="FL-1040-FILING"/>  
+			<xs:enumeration value="NV-1040-FILING"/>  
+			<xs:enumeration value="NV-1040-FILING"/>  
+			<xs:enumeration value="NH-1040-FILING"/>  
+			<xs:enumeration value="NH-1040-FILING"/>  
+			<xs:enumeration value="SD-1040-FILING"/>  
+			<xs:enumeration value="SD-1040-FILING"/>  
+			<xs:enumeration value="TN-1040-FILING"/>  
+			<xs:enumeration value="TN-1040-FILING"/>  
+			<xs:enumeration value="TX-1040-FILING"/>  
+			<xs:enumeration value="TX-1040-FILING"/>  
+			<xs:enumeration value="WA-1040-FILING"/>  
+			<xs:enumeration value="WA-1040-FILING"/>  
+			<xs:enumeration value="WY-1040-FILING"/>  
+			<xs:enumeration value="WY-1040-FILING"/>  
+			
+			<!-- Comment out, until typesafeEnumMaxMembers is taken care of -->
+			<!--xs:enumeration value="AL-CORP-FILING"/> <xs:enumeration value="AL-CORP-EXTENSION"/> 
+				<xs:enumeration value="AL-SCORP-FILING"/> <xs:enumeration value="AL-SCORP-EXTENSION"/> 
+				<xs:enumeration value="CA-CORP-FILING"/> <xs:enumeration value="CA-SCORP-FILING"/> 
+				<xs:enumeration value="CO-CORP-FILING"/> <xs:enumeration value="CO-CORP-EXTENSION"/> 
+				<xs:enumeration value="CO-SCORP-FILING"/> <xs:enumeration value="CO-SCORP-EXTENSION"/> 
+				<xs:enumeration value="IRS-CORP-FILING"/> <xs:enumeration value="IRS-CORP-EXTENSION"/> 
+				<xs:enumeration value="IRS-SCORP-FILING"/> <xs:enumeration value="IRS-SCORP-EXTENSION"/> 
+				<xs:enumeration value="IRS-CORP-AMENDED"/> <xs:enumeration value="IRS-SCORP-AMENDED"/> 
+				<xs:enumeration value="FL-CORP-FILING"/> <xs:enumeration value="FL-CORP-EXTENSION"/> 
+				<xs:enumeration value="FL-SCORP-FILING"/> <xs:enumeration value="FL-SCORP-EXTENSION"/> 
+				<xs:enumeration value="GA-CORP-FILING"/> <xs:enumeration value="GA-CORP-EXTENSION"/> 
+				<xs:enumeration value="GA-SCORP-FILING"/> <xs:enumeration value="GA-SCORP-EXTENSION"/> 
+				<xs:enumeration value="IA-CORP-FILING"/> <xs:enumeration value="IA-SCORP-FILING"/> 
+				<xs:enumeration value="ID-CORP-FILING"/> <xs:enumeration value="ID-SCORP-FILING"/> 
+				<xs:enumeration value="IL-CORP-FILING"/> <xs:enumeration value="IL-CORP-EXTENSION"/> 
+				<xs:enumeration value="IL-SCORP-FILING"/> <xs:enumeration value="IL-SCORP-EXTENSION"/> 
+				<xs:enumeration value="KS-CORP-FILING"/> <xs:enumeration value="KS-CORP-EXTENSION"/> 
+				<xs:enumeration value="KS-SCORP-FILING"/> <xs:enumeration value="KS-SCORP-EXTENSION"/> 
+				<xs:enumeration value="LA-CORP-FILING"/> <xs:enumeration value="LA-CORP-EXTENSION"/> 
+				<xs:enumeration value="LA-SCORP-FILING"/> <xs:enumeration value="LA-SCORP-EXTENSION"/> 
+				<xs:enumeration value="MA-CORP-FILING"/> <xs:enumeration value="MA-CORP-EXTENSION"/> 
+				<xs:enumeration value="MA-SCORP-FILING"/> <xs:enumeration value="MA-SCORP-EXTENSION"/> 
+				<xs:enumeration value="MD-CORP-FILING"/> <xs:enumeration value="MD-CORP-EXTENSION"/> 
+				<xs:enumeration value="MD-SCORP-FILING"/> <xs:enumeration value="MD-SCORP-EXTENSION"/> 
+				<xs:enumeration value="MI-CORP-FILING"/> <xs:enumeration value="MI-CORP-EXTENSION"/> 
+				<xs:enumeration value="MI-SCORP-FILING"/> <xs:enumeration value="MI-SCORP-EXTENSION"/> 
+				<xs:enumeration value="MN-CORP-FILING"/> <xs:enumeration value="MN-CORP-EXTENSION"/> 
+				<xs:enumeration value="MN-SCORP-FILING"/> <xs:enumeration value="MN-SCORP-EXTENSION"/> 
+				<xs:enumeration value="MO-CORP-FILING"/> <xs:enumeration value="MO-SCORP-FILING"/> 
+				<xs:enumeration value="MT-CORP-FILING"/> <xs:enumeration value="MT-CORP-EXTENSION"/> 
+				<xs:enumeration value="MT-SCORP-FILING"/> <xs:enumeration value="MT-SCORP-EXTENSION"/> 
+				<xs:enumeration value="NY-CORP-FILING"/> <xs:enumeration value="NY-CORP-EXTENSION"/> 
+				<xs:enumeration value="NY-CORP-AMENDED"/> <xs:enumeration value="NY-CORP-PAYMENT"/> 
+				<xs:enumeration value="NY-SCORP-FILING"/> <xs:enumeration value="NY-SCORP-EXTENSION"/> 
+				<xs:enumeration value="NY-SCORP-PAYMENT"/> <xs:enumeration value="NY-SCORP-AMENDED"/> 
+				<xs:enumeration value="NYC-CORP-FILING"/> <xs:enumeration value="NYC-CORP-EXTENSION"/> 
+				<xs:enumeration value="NYC-CORP-AMENDED"/> <xs:enumeration value="NYC-SCORP-FILING"/> 
+				<xs:enumeration value="NYC-SCORP-EXTENSION"/> <xs:enumeration value="NYC-SCORP-AMENDED"/> 
+				<xs:enumeration value="OK-CORP-FILING"/> <xs:enumeration value="OK-SCORP-FILING"/> 
+				<xs:enumeration value="OR-CORP-FILING"/> <xs:enumeration value="OR-CORP-EXTENSION"/> 
+				<xs:enumeration value="OR-SCORP-FILING"/> <xs:enumeration value="OR-SCORP-EXTENSION"/> 
+				<xs:enumeration value="PA-CORP-FILING"/> <xs:enumeration value="PA-CORP-EXTENSION"/> 
+				<xs:enumeration value="PA-SCORP-FILING"/> <xs:enumeration value="PA-SCORP-EXTENSION"/> 
+				<xs:enumeration value="RI-CORP-FILING"/> <xs:enumeration value="RI-SCORP-FILING"/> 
+				<xs:enumeration value="SC-CORP-FILING"/> <xs:enumeration value="SC-CORP-EXTENSION"/> 
+				<xs:enumeration value="SC-SCORP-FILING"/> <xs:enumeration value="SC-SCORP-EXTENSION"/> 
+				<xs:enumeration value="TN-CORP-FILING"/> <xs:enumeration value="TN-CORP-EXTENSION"/> 
+				<xs:enumeration value="TN-SCORP-FILING"/> <xs:enumeration value="TN-SCORP-EXTENSION"/> 
+				<xs:enumeration value="TX-CORP-FILING"/> <xs:enumeration value="TX-CORP-EXTENSION"/> 
+				<xs:enumeration value="TX-SCORP-FILING"/> <xs:enumeration value="TX-SCORP-EXTENSION"/> 
+				<xs:enumeration value="UT-CORP-FILING"/> <xs:enumeration value="UT-CORP-EXTENSION"/> 
+				<xs:enumeration value="UT-SCORP-FILING"/> <xs:enumeration value="UT-SCORP-EXTENSION"/> 
+				<xs:enumeration value="VA-CORP-FILING"/> <xs:enumeration value="WI-CORP-FILING"/> 
+				<xs:enumeration value="WI-CORP-EXTENSION"/> <xs:enumeration value="WI-SCORP-FILING"/> 
+				<xs:enumeration value="WI-SCORP-EXTENSION"/> <xs:enumeration value="IRS-EXEMPT-FILING"/> 
+				<xs:enumeration value="IRS-EXEMPT-AMENDED"/> <xs:enumeration value="IRS-EXEMPT-EXTENSION"/> 
+				<xs:enumeration value="AL-EXEMPT-FILING"/> <xs:enumeration value="AL-EXEMPT-EXTENSION"/> 
+				<xs:enumeration value="FL-EXEMPT-FILING"/> <xs:enumeration value="FL-EXEMPT-EXTENSION"/> 
+				<xs:enumeration value="GA-EXEMPT-FILING"/> <xs:enumeration value="GA-EXEMPT-EXTENSION"/> 
+				<xs:enumeration value="KS-EXEMPT-FILING"/> <xs:enumeration value="KS-EXEMPT-EXTENSION"/> 
+				<xs:enumeration value="MD-EXEMPT-FILING"/> <xs:enumeration value="MD-EXEMPT-EXTENSION"/> 
+				<xs:enumeration value="MI-EXEMPT-FILING"/> <xs:enumeration value="MI-EXEMPT-EXTENSION"/> 
+				<xs:enumeration value="MN-EXEMPT-FILING"/> <xs:enumeration value="MN-EXEMPT-EXTENSION"/> 
+				<xs:enumeration value="NY-EXEMPT-FILING"/> <xs:enumeration value="NY-EXEMPT-EXTENSION"/> 
+				<xs:enumeration value="NY-EXEMPT-PAYMENT"/> <xs:enumeration value="NYC-EXEMPT-FILING"/> 
+				<xs:enumeration value="NYC-EXEMPT-EXTENSION"/> <xs:enumeration value="SC-EXEMPT-FILING"/> 
+				<xs:enumeration value="SC-EXEMPT-EXTENSION"/> <xs:enumeration value="WI-EXEMPT-FILING"/> 
+				<xs:enumeration value="WI-EXEMPT-EXTENSION"/> <xs:enumeration value="US-DOL-FILING"/> 
+				<xs:enumeration value="US-DOL-AMENDED"/> <xs:enumeration value="IRS-FID-FILING"/> 
+				<xs:enumeration value="IRS-FID-EXTENSION"/> <xs:enumeration value="NY-FID-FILING"/> 
+				<xs:enumeration value="MA-FID-FILING"/> <xs:enumeration value="MA-FID-EXTENSION"/> 
+				<xs:enumeration value="WI-FID-FILING"/> <xs:enumeration value="FL-CORP-EST-PAYMENT"/> 
+				<xs:enumeration value="FL-SCORP-EST-PAYMENT"/> <xs:enumeration value="FL-PARTNER-EST-PAYMENT"/> 
+				<xs:enumeration value="FL-EXEMPT-EST-PAYMENT"/> <xs:enumeration value="NY-CORP-EST-PAYMENT"/> 
+				<xs:enumeration value="NY-SCORP-EST-PAYMENT"/> <xs:enumeration value="NYC-CORP-EST-PAYMENT"/> 
+				<xs:enumeration value="NYC-SCORP-EST-PAYMENT"/> <xs:enumeration value="NYC-PARTNER-EST-PAYMENT"/> 
+				<xs:enumeration value="NYC-IIT-EST-PAYMENT"/> <xs:enumeration value="TN-CORP-EST-PAYMENT"/> 
+				<xs:enumeration value="TN-SCORP-EST-PAYMENT"/> <xs:enumeration value="TN-PARTNER-EST-PAYMENT"/> 
+				<xs:enumeration value="MA-CONSOLIDATED-FILING"/> <xs:enumeration value="MI-BUSINESS-FILING"/> 
+				<xs:enumeration value="TX-FRANCHISE-FILING"/> <xs:enumeration value="TX-FRANCHISE-FILING"/> 
+				<xs:enumeration value="TX-FRANCHISE-EXTENSION"/> <xs:enumeration value="WI-MULTISTATE-FILING"/> 
+			<xs:enumeration value="MN-PROPTAX-FILING"/-->
+			
+			<xs:enumeration value="MA-IIT-EXTENSION"/>
+
+
+			
+			<xs:enumeration value="SBBT-Y-ENROLLMENT"/>  
+			<xs:enumeration value="SBBT-P-FEATURE"/> 
+			<xs:enumeration value="SBBT-SR-FEATURE"/>  
+
+  
+        </xs:restriction>
+    </xs:simpleType>
+    
+	<xs:complexType name="AttachItem">
+		<xs:annotation>
+			<xs:documentation>there are attached products like audit defense
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="displayName" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="product" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="productType" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	
+   <xs:simpleType name="TaxAuthority">
+    	<xs:annotation>
+      <xs:appinfo>
+        <jaxb:typesafeEnumClass>
+               <jaxb:typesafeEnumMember value="US"  name="Federal"/>
+           <jaxb:typesafeEnumMember value="AL"  name="Alabama"/>
+  <jaxb:typesafeEnumMember value="AK"  name="Alaska"/>
+					<jaxb:typesafeEnumMember value="AS"
+						name="American_Samoa" />
+  <jaxb:typesafeEnumMember value="AZ"  name="Arizona"/>
+  <jaxb:typesafeEnumMember value="AR"  name="Arkansas"/>
+  <jaxb:typesafeEnumMember value="CA"  name="California"/>
+  <jaxb:typesafeEnumMember value="CO"  name="Colorado"/>
+					<jaxb:typesafeEnumMember value="CT"
+						name="Connecticut" />
+  <jaxb:typesafeEnumMember value="DE"  name="Delaware"/>
+					<jaxb:typesafeEnumMember value="DC"
+						name="District_of_Columbia" />
+  <jaxb:typesafeEnumMember value="FL"  name="Florida"/>
+  <jaxb:typesafeEnumMember value="GA"  name="Georgia"/>
+  <jaxb:typesafeEnumMember value="GU"  name="Guam"/>
+  <jaxb:typesafeEnumMember value="HI"  name="Hawaii"/>
+  <jaxb:typesafeEnumMember value="ID"  name="Idaho"/>
+  <jaxb:typesafeEnumMember value="IL"  name="Illinois"/>
+  <jaxb:typesafeEnumMember value="IN"  name="Indiana"/>
+  <jaxb:typesafeEnumMember value="IA"  name="Iowa"/>
+  <jaxb:typesafeEnumMember value="KS"  name="Kansas"/>
+  <jaxb:typesafeEnumMember value="KY"  name="Kentucky"/>
+  <jaxb:typesafeEnumMember value="LA"  name="Louisiana"/>
+  <jaxb:typesafeEnumMember value="ME"  name="Maine"/>
+  <jaxb:typesafeEnumMember value="MD"  name="Maryland"/>
+					<jaxb:typesafeEnumMember value="MA"
+						name="Massachusetts" />
+  <jaxb:typesafeEnumMember value="MI"  name="Michigan"/>
+  <jaxb:typesafeEnumMember value="MN"  name="Minnesota"/>
+					<jaxb:typesafeEnumMember value="MS"
+						name="Mississippi" />
+  <jaxb:typesafeEnumMember value="MO"  name="Missouri"/>
+  <jaxb:typesafeEnumMember value="MT"  name="Montana"/>
+  <jaxb:typesafeEnumMember value="NE"  name="Nebraska"/>
+  <jaxb:typesafeEnumMember value="NV"  name="Nevada"/>
+					<jaxb:typesafeEnumMember value="NH"
+						name="New_Hampshire" />
+  <jaxb:typesafeEnumMember value="NJ"  name="New_Jersey"/>
+  <jaxb:typesafeEnumMember value="NM"  name="New_Mexico"/>
+  <jaxb:typesafeEnumMember value="NY"  name="New_York"/>
+					<jaxb:typesafeEnumMember value="NC"
+						name="North_Carolina" />
+					<jaxb:typesafeEnumMember value="ND"
+						name="North_Dakota" />
+					<jaxb:typesafeEnumMember value="MP"
+						name="Northern_Marianas_Islands" />
+  <jaxb:typesafeEnumMember value="OH"  name="Ohio"/>
+  <jaxb:typesafeEnumMember value="OK"  name="Oklahoma"/>
+  <jaxb:typesafeEnumMember value="OR"  name="Oregon"/>
+					<jaxb:typesafeEnumMember value="PA"
+						name="Pennsylvania" />
+					<jaxb:typesafeEnumMember value="PR"
+						name="Puerto_Rico" />
+					<jaxb:typesafeEnumMember value="RI"
+						name="Rhode_Island" />
+					<jaxb:typesafeEnumMember value="SC"
+						name="South_Carolina" />
+					<jaxb:typesafeEnumMember value="SD"
+						name="South_Dakota" />
+  <jaxb:typesafeEnumMember value="TN"  name="Tennessee"/>
+  <jaxb:typesafeEnumMember value="TX"  name="Texas"/>
+  <jaxb:typesafeEnumMember value="UT"  name="Utah"/>
+  <jaxb:typesafeEnumMember value="VT"  name="Vermont"/>
+  <jaxb:typesafeEnumMember value="VA"  name="Virginia"/>
+					<jaxb:typesafeEnumMember value="VI"
+						name="Virgin_Islands" />
+  <jaxb:typesafeEnumMember value="WA"  name="Washington"/>
+					<jaxb:typesafeEnumMember value="WV"
+						name="West_Virginia" />
+  <jaxb:typesafeEnumMember value="WI"  name="Wisconsin"/>
+  <jaxb:typesafeEnumMember value="WY"  name="Wyoming"/>
+        </jaxb:typesafeEnumClass>
+      </xs:appinfo>
+    </xs:annotation>
+        <xs:restriction base="xs:string">
+             <xs:enumeration value="US"/>
+            <xs:enumeration value="AL"/>
+            <xs:enumeration value="AK"/>
+            <xs:enumeration value="AS"/>
+            <xs:enumeration value="AZ"/>
+            <xs:enumeration value="AR"/>
+            <xs:enumeration value="CA"/>
+            <xs:enumeration value="CO"/>
+            <xs:enumeration value="CT"/>
+            <xs:enumeration value="DE"/>
+            <xs:enumeration value="DC"/>
+            <xs:enumeration value="FL"/>
+            <xs:enumeration value="GA"/>
+            <xs:enumeration value="HI"/>
+            <xs:enumeration value="ID"/>
+            <xs:enumeration value="IL"/>
+            <xs:enumeration value="IN"/>
+            <xs:enumeration value="IA"/>
+            <xs:enumeration value="KS"/>
+            <xs:enumeration value="KY"/>
+            <xs:enumeration value="LA"/>
+            <xs:enumeration value="ME"/>
+            <xs:enumeration value="MD"/>
+            <xs:enumeration value="MA"/>
+            <xs:enumeration value="MI"/>
+            <xs:enumeration value="MN"/>
+            <xs:enumeration value="MS"/>
+            <xs:enumeration value="MO"/>
+            <xs:enumeration value="MT"/>
+            <xs:enumeration value="NE"/>
+            <xs:enumeration value="NV"/>
+            <xs:enumeration value="NH"/>
+            <xs:enumeration value="NJ"/>
+            <xs:enumeration value="NM"/>
+            <xs:enumeration value="NY"/>
+            <xs:enumeration value="NC"/>
+            <xs:enumeration value="ND"/>
+            <xs:enumeration value="OH"/>
+            <xs:enumeration value="OK"/>
+            <xs:enumeration value="OR"/>
+            <xs:enumeration value="PA"/>
+            <xs:enumeration value="RI"/>
+            <xs:enumeration value="SC"/>
+            <xs:enumeration value="SD"/>
+            <xs:enumeration value="TN"/>
+            <xs:enumeration value="TX"/>
+            <xs:enumeration value="UT"/>
+            <xs:enumeration value="VT"/>
+            <xs:enumeration value="VA"/>
+            <xs:enumeration value="WA"/>
+            <xs:enumeration value="WV"/>
+            <xs:enumeration value="WI"/>
+            <xs:enumeration value="WY"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+     <xs:complexType name="FullName">
+        <xs:annotation>
+            <xs:documentation>
+            	First and last name are always required.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+			<xs:element name="salutation" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="firstName" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="middleName" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="lastName" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="suffix" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="EfeFilingStatus">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EFILE_READY">
+				<xs:annotation>
+					<xs:documentation>e-file ready
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			  <xs:enumeration value="EFILE_READY_INDETERMINATE"/>
+			<xs:enumeration value="EFILE_REJECTED">
+				<xs:annotation>
+					<xs:documentation>e-file rejected
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RECEIVED">
+				<xs:annotation>
+					<xs:documentation>e-file received</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="IN_AGENCY">
+				<xs:annotation>
+					<xs:documentation>e-file in agency
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="REJECTED_AGENCY">
+				<xs:annotation>
+					<xs:documentation>e-file rejected by agency
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SUCCEEDED_AGENCY">
+				<xs:annotation>
+					<xs:documentation>e-file succeeded in agency
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			
+			<xs:enumeration value="CANCELLED">
+				<xs:annotation>
+					<xs:documentation>e-file canceled 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			
+			<xs:enumeration value="FAILED_MALFORMED_PAYLOAD">
+				<xs:annotation>
+					<xs:documentation>e-file mal-formed payload 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			
+			<xs:enumeration value="FAILED_VALIDATION">
+				<xs:annotation>
+					<xs:documentation>e-file failed validation
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			
+			<xs:enumeration value="FAILED_DEPENDENCY">
+				<xs:annotation>
+					<xs:documentation>e-file failed dependency
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	 <xs:simpleType name="PrintType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FILING">
+				<xs:annotation>
+					<xs:documentation>print for filing
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RECORDS">
+				<xs:annotation>
+					<xs:documentation>print for records
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			
+			<xs:enumeration value="RECORDS_WORKSHEETS"/>
+			
+			<xs:enumeration value="RECORDS_ALL_WORKSHEETS"/>
+		
+			<xs:enumeration value="REVIEW"/>
+			
+			
+			<xs:enumeration value="SELECTED"/>
+			
+			
+			<xs:enumeration value="SELECT_DETAILS"/>
+		
+			
+			<xs:enumeration value="EF_PAPERWORK"/>
+		
+			<xs:enumeration value="EF_POSTMARK"/>
+			
+			<xs:enumeration value="ACTIVE_FORM"/>
+			
+			<xs:enumeration value="FILING_WO_ATTACHMENTS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	 <xs:complexType name="EfileDetails">
+        <xs:sequence>
+           <xs:element name="efeTrackingNumber" type="xs:string" minOccurs="0"/>
+           <xs:element name="clientFilingId" type="xs:string"/>
+			<xs:element name="filingType" type="xs:string"/>
+			<xs:element name="rxTimestamp" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>
+						The timestamp that EFE received this submission.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="postmark" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						The postmark is the date and time that the agency
+						considers
+						that they have received the submission. In cases where EFE has
+						postmark authority, this will be the time that it has been
+						received by EFE. 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="confirmationNumber" type="xs:string"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The agency confirmation number (may not be
+						supported by all agencies). In the case of IRS submissions,
+						this
+						would be the DCN (document control number). EFE will only return
+						this element when we have a value for it. For instance,
+						with IIT,
+						EFE generates the DCN at the time of submission to the agency. Any
+						status requests prior to this point will be missing
+						the DCN. All status requests afterwards should contain the DCN.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="customerServiceMessages" type="EfeCustomerServiceMessageType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="statusMessage" type="EfeStatusMessageType"
+				minOccurs="0" />
+			<xs:element name="holdInfo" type="HoldInfoType" minOccurs="0" maxOccurs="10"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="EfeFilingStateType">
+		<xs:annotation>
+			<xs:documentation>Defines the extenal filing states that a filing may
+				be in. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PENDING_EFE"/>
+			<xs:enumeration value="PENDING_AGENCY"/>
+			<xs:enumeration value="ACK_SUCCEEDED"/>
+			<xs:enumeration value="ACK_REJECTED"/>
+			<xs:enumeration value="FAILED_VALIDATION"/>
+			<xs:enumeration value="FAILED_PROCESSING"/>
+			<xs:enumeration value="CANCELLED"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="EfeStatusMessageType">
+		<xs:annotation>
+			<xs:documentation>Defines a message indicating that the current state
+				of a filing. EFE automatically generates a status message each time
+				there is a state transition for a filing.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="timestamp" type="xs:dateTime"/>
+			<xs:element name="filingState" type="EfeFilingStateType">
+				<xs:annotation>
+					<xs:documentation>The external state of the filing.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="xs:string"/>
+			<xs:element name="errorInfo" type="EfeErrorType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	
+    <xs:complexType name="EfeFeatureStatusType">
+		<xs:annotation>
+			<xs:documentation>The status for a feature (i.e. RT, BalDue, etc).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+		    <xs:element name="type" type="xs:string">
+		        <xs:annotation>
+					<xs:documentation>The type of feature. Same value as passed in
+						during the submit.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="timestamp" type="xs:dateTime"/>
+			<xs:element name="status" type="EfeFeatureStateType">
+				<xs:annotation>
+					<xs:documentation>The external feature state of the filing.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EfeCustomerServiceMessageType">
+		<xs:annotation>
+			<xs:documentation>Defines a message written by Customer Service
+				directed to the end-user. Examples may be "There was a problem
+				processing your filing. Please call customer service to resolve the
+				issue."</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="timestamp" type="xs:dateTime"/>
+			<xs:element name="severity" type="xs:int" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Current values are 0, 1, 2, but more may be added in the future. Severity
+						is
+						only returned to the client if the gateway version is present and >=
+						2.
+						</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="message" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="EfeFeatureStateType">
+		<xs:annotation>
+			<xs:documentation>Defines the extenal states for EFE features (i.e.
+				RT, BalDue, etc). </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PENDING"/>
+			<xs:enumeration value="SUCCESSFUL"/>
+			<xs:enumeration value="FAILED"/>
+			<xs:enumeration value="CANCELLED"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="EfeErrorType">
+		<xs:annotation>
+			<xs:documentation>Defines an error message that will should be
+				returned with error states.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="errorCode" type="xs:string" nillable="true">
+				<xs:annotation>
+					<xs:documentation>The EFE Error Code that corresponds to the error.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="problemMsg" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Text that describes the problem in clear
+						user-oriented language.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="solutionMsg" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Text that describes the solution to the problem
+						in clear user-oriented language.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TaxReturnStatus">
+		<xs:sequence>
+			<xs:element name="taxDocumentName" type="DocumentName">
+				<xs:annotation>
+					<xs:documentation>Tax Document Name</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="taxDocumentId" type="DocumentId" />
+			<xs:element name="applicationId" type="AppId" minOccurs="0"/>
+			<xs:element name="appSku" type="AppSku" minOccurs="0"/>
+			<xs:element name="taxYear" type="xs:string" />
+
+			<xs:element name="agencyReturnInformation" type="AgencyReturnInformation"
+				minOccurs="0" maxOccurs="unbounded" />
+				
+				
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="TaxReturnStatusLite">
+		<xs:sequence>
+			<xs:element name="applicationId" type="AppId" minOccurs="0"/>
+			<xs:element name="appSku" type="AppSku" minOccurs="0"/>
+			<xs:element name="taxYear" type="xs:string" />
+			<xs:element name="taxDocumentId" type="DocumentId" minOccurs="0"/>
+			<xs:element name="agencyReturnInformation" type="AgencyReturnInformationLite"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+<xs:simpleType name="FormatEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="taxml" />
+			<xs:enumeration value="formml" />
+			<xs:enumeration value="pdf" />
+			<xs:enumeration value="ceml" />
+			<xs:enumeration value="tcml" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+<xs:simpleType name="AppSku">
+			<xs:annotation>
+			<xs:appinfo>
+				<jaxb:typesafeEnumClass>
+					<jaxb:typesafeEnumMember value="1"  name="FFAForms"/>
+					<jaxb:typesafeEnumMember value="2"  name="Basic"/>
+					<jaxb:typesafeEnumMember value="4"
+						name="FreeFileEdition" />
+					<jaxb:typesafeEnumMember value="8"  name="Premier"/>
+					<jaxb:typesafeEnumMember value="16"
+						name="DeductionMaximizer" />
+					<jaxb:typesafeEnumMember value="32"
+						name="HomeAndBusiness" />
+					<jaxb:typesafeEnumMember value="512"  name="BasicFree"/>
+					<jaxb:typesafeEnumMember value="801"  name="iPhone"/>
+					<jaxb:typesafeEnumMember value="802"  name="Android"/>
+					<jaxb:typesafeEnumMember value="2048"
+						name="EasyExtension" />
+					<jaxb:typesafeEnumMember value="4096"  name="MilitaryE"/>
+					<jaxb:typesafeEnumMember value="8192"  name="MilitaryO"/>
+					<jaxb:typesafeEnumMember value="16384"
+						name="NUE" />
+				</jaxb:typesafeEnumClass>
+			</xs:appinfo>
+    	</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1" />
+			<xs:enumeration value="2" />
+			<xs:enumeration value="4" />
+			<xs:enumeration value="8" />
+			<xs:enumeration value="16" />
+			<xs:enumeration value="32" />
+			<xs:enumeration value="512" />
+			<xs:enumeration value="801" />
+			<xs:enumeration value="802" />
+			<xs:enumeration value="2048" />
+			<xs:enumeration value="4096" />
+			<xs:enumeration value="8192" />
+			<xs:enumeration value="16384" />
+			</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="AppId">
+	 <!-- Application Id -->
+		<xs:restriction base="xs:string">
+			 <!-- EasyExtension Business -->
+					<xs:enumeration value="Intuit.cg.dataplatform" />
+					<!-- EFE -->
+					<xs:enumeration value="intuit.cg.efs.efe" />
+					<xs:enumeration value="intuit.cg.dataservices" />
+					<xs:enumeration value="intuit.cg.cfp.services" />
+					<xs:enumeration value="Intuit.cg.pf.mint" />
+					<xs:enumeration value="Intuit.ctg.tto.platform" />
+					<xs:enumeration value="Intuit.ctg.ido" />
+					<xs:enumeration value="Intuit.ctg.instantreturn.iphoneapp" />
+					<xs:enumeration value="Intuit.cg.cid.service" />
+					<xs:enumeration value="Intuit.cg.nue" />
+					<xs:enumeration value="Intuit.cg.ttn.platform" />
+					<xs:enumeration value="Intuit.cg.ttn.ipad" />
+					<xs:enumeration value="Intuit.iit.wcg.platform " />
+					<xs:enumeration value="Intuit.wcg.turbotax.csr" />
+					<xs:enumeration value="Intuit.cg.turbotax.salesforce" />
+					<xs:enumeration value="Intuit.cg.myturbotax" />
+					<xs:enumeration value="Intuit.cg.cfp.opstool" />
+					<xs:enumeration value="Intuit.gbd.cfp.sp" />
+			</xs:restriction>
+	</xs:simpleType>
+	
+</xs:schema>

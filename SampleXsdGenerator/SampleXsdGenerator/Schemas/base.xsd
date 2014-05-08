@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema targetNamespace="http://cfp.intuit.com/base" xmlns="http://cfp.intuit.com/base"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:complexType name="ErrorStatus">
+		<xs:sequence>
+			<xs:element name="scope" type="xs:string" minOccurs="1"
+				maxOccurs="1">
+			</xs:element>
+			<xs:element name="code" type="xs:int" minOccurs="1"
+				maxOccurs="1">
+			</xs:element>
+			<xs:element name="name" type="xs:string" minOccurs="1"
+				maxOccurs="1">
+			</xs:element>
+			<xs:element name="description" type="xs:string" minOccurs="0"
+				maxOccurs="1">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ErrorResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ResponseMessage">
+					<xs:sequence>
+						<xs:element name="errorStatus" type="ErrorStatus"
+							minOccurs="0" maxOccurs="1">
+							<xs:annotation>
+								<xs:documentation>
+									The status of the request processing. Should
+									this be a list of ErrorStatus, so that multiple error codes
+									could be returned? For example a 'calc' request that may return
+									a list of fields that are in error for various reasons.
+								</xs:documentation>
+							</xs:annotation>
+
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="AsyncResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ResponseMessage">
+					<xs:sequence>
+						<xs:any minOccurs="0" maxOccurs="10"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	<xs:complexType name="Message" abstract="true">
+	</xs:complexType>
+
+	<xs:complexType name="ResponseMessage" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="Message" />
+		</xs:complexContent>
+
+	</xs:complexType>
+
+
+	<xs:complexType name="RequestMessage" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="Message">
+				<xs:sequence>
+					<xs:element name="sessionToken" type="xs:string"
+						minOccurs="0" maxOccurs="1">
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+
+	<xs:simpleType name="StringNE">
+		<xs:annotation>
+			<xs:documentation>A string that cannot be empty</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="Money">
+		<xs:sequence>
+			<xs:element name="amount" type="xs:double" minOccurs="1"
+				maxOccurs="1">
+			</xs:element>
+			<xs:element name="currency" type="xs:string" minOccurs="1"
+				maxOccurs="1">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CreditCard">
+		<xs:annotation>
+			<xs:documentation>A credit card</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="kind" type="CreditCardKind">
+				<xs:annotation>
+					<xs:documentation>The credit card provider</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="numberObscured" type="CreditCardNumberObscured">
+				<xs:annotation>
+					<xs:documentation>An obscured credit card number.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="expirationMonth" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>The month of the credit card's expiration
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="expirationYear" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>The year of the credit card's expiration
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="billingAddress" type="Address">
+				<xs:annotation>
+					<xs:documentation>The billing address</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:simpleType name="SocialSecurityNumber">
+		<xs:annotation>
+			<xs:documentation>Matches United State's Social Security Numbers. eg.
+				"123-45-6789" or
+				"123456789"
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="^(\d{3}-\d{2}-\d{4})|(\d{3}\d{2}\d{4})$" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="Address">
+		<xs:sequence>
+			<xs:element name="line1" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="line2" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="line3" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="city" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="state" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="zipcode" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="zipCodeExt" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="country" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="Phone">
+		<xs:annotation>
+			<xs:documentation>
+				This is the Phone type definition that supports international* phone
+				numbers.
+
+				Usage:
+
+				To represent (858) 215-7370 in San Diego, USA:
+				countryCode: 1 (optional)
+				areaCode: 858
+				number: 215-7370
+
+				To represent (33) 01 40 20 53 17, Louvre Museum in Paris, France:
+				countryCode: 33
+				areaCode: 01
+				number: 40 20 53 17 (the rest of the number, with or without spaces)
+
+				Notes:
+				1. Standard non-alphanumeric characters like parenthesis, dashes, +
+				sign, spaces
+				ARE SUPPORTED in the phone number input fields.
+				Still, clients are encouraged to perform as much client-side validation as
+				possible.
+				2. *International number support will require additional testing.
+
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="countryCode" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Numeric country code, e.g., 1 (US), 33 (France), 52 (Mexico)
+						Optional field. If not provided, USA country code (1) is used.
+
+						Only numeric values, 1-4 digits in length.
+						See http://countrycode.org/ for more info on the available country
+						codes.
+
+						Note that in your XML request, you can also use an empty string
+						for a country code, like
+						<countryCode />
+						.
+						See the "|" (OR) in front of [0-9} in the regular expression below.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="|[0-9]{1,4}" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="areaCode" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="number" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="extension" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="isMobile" type="xs:boolean" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="allowSMS" type="xs:boolean" minOccurs="0"
+				maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						Flag to indicate that the user would like to receive notifications via
+						SMS.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="FullName">
+		<xs:annotation>
+			<xs:documentation>
+				First and last name are always required.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="salutation" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="firstName" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="middleName" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="lastName" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="suffix" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="displayName" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:simpleType name="EmailAddress">
+		<xs:annotation>
+			<xs:documentation>Allow any string less than 256 char long.
+				Since we pull data from multiple sources, we need to be able 
+				to handle the data that those sources contain.
+				Restricting email addresses was preventing some customers from accessing their data.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="String256"></xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ContactChannelKind">
+		<xs:annotation>
+			<xs:documentation>An enumeration of possible contact channels.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="phone" />
+			<xs:enumeration value="chat" />
+			<xs:enumeration value="email" />
+			<xs:enumeration value="other" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CreditCardKind">
+		<xs:annotation>
+			<xs:documentation>An enumeration of possible credit card providers.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="visa" />
+			<xs:enumeration value="masterCard" />
+			<xs:enumeration value="americanExpress" />
+			<xs:enumeration value="discover" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CreditCardNumberObscured">
+		<xs:annotation>
+			<xs:documentation>An obscured credit card number with only the
+				trailing 4 digits
+				provided
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="^(\d{4})$" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TaxingAuthority">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="US" />
+			<xs:enumeration value="AL" />
+			<xs:enumeration value="AK" />
+			<xs:enumeration value="AZ" />
+			<xs:enumeration value="AR" />
+			<xs:enumeration value="CA" />
+			<xs:enumeration value="CO" />
+			<xs:enumeration value="CT" />
+			<xs:enumeration value="DE" />
+			<xs:enumeration value="DC" />
+			<xs:enumeration value="FL" />
+			<xs:enumeration value="GA" />
+			<xs:enumeration value="HI" />
+			<xs:enumeration value="ID" />
+			<xs:enumeration value="IL" />
+			<xs:enumeration value="IN" />
+			<xs:enumeration value="IA" />
+			<xs:enumeration value="KS" />
+			<xs:enumeration value="KY" />
+			<xs:enumeration value="LA" />
+			<xs:enumeration value="ME" />
+			<xs:enumeration value="MD" />
+			<xs:enumeration value="MA" />
+			<xs:enumeration value="MI" />
+			<xs:enumeration value="MN" />
+			<xs:enumeration value="MS" />
+			<xs:enumeration value="MO" />
+			<xs:enumeration value="MT" />
+			<xs:enumeration value="NE" />
+			<xs:enumeration value="NV" />
+			<xs:enumeration value="NH" />
+			<xs:enumeration value="NJ" />
+			<xs:enumeration value="NM" />
+			<xs:enumeration value="NY" />
+			<xs:enumeration value="NC" />
+			<xs:enumeration value="ND" />
+			<xs:enumeration value="OH" />
+			<xs:enumeration value="OK" />
+			<xs:enumeration value="OR" />
+			<xs:enumeration value="PA" />
+			<xs:enumeration value="RI" />
+			<xs:enumeration value="SC" />
+			<xs:enumeration value="SD" />
+			<xs:enumeration value="TN" />
+			<xs:enumeration value="TX" />
+			<xs:enumeration value="UT" />
+			<xs:enumeration value="VT" />
+			<xs:enumeration value="VA" />
+			<xs:enumeration value="WA" />
+			<xs:enumeration value="WV" />
+			<xs:enumeration value="WI" />
+			<xs:enumeration value="WY" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="ContactInfo">
+		<xs:sequence>
+			<xs:element name="name" type="FullName" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="address" type="Address" minOccurs="0"
+				maxOccurs="1" />
+
+			<!-- Make phone types explicit, instead of relying on Phone.type -->
+			<xs:element name="mobilePhone" type="Phone" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="homePhone" type="Phone" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="workPhone" type="Phone" minOccurs="0"
+				maxOccurs="1" />
+
+			<!-- Make email types explicit -->
+			<xs:element name="email" type="EmailAddress" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="altEmail" type="EmailAddress"
+				minOccurs="0" maxOccurs="1" />
+
+			<xs:element name="type" type="ContactType" minOccurs="0"
+				maxOccurs="1" />
+
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="ContactType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Primary" />
+			<xs:enumeration value="Billing" />
+			<xs:enumeration value="Shipping" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="SecurityQnA">
+		<xs:annotation>
+			<xs:documentation>Security question and answer.
+				For update requests, must be provided together, or not provided at all.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="question" type="String256" />
+			<xs:element name="answer" type="String256" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:simpleType name="String256">
+		<xs:annotation>
+			<xs:documentation>
+				String type, no longer than 256 characters.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TaxYear">
+		<xs:annotation>
+			<xs:documentation>
+				A 4-digit tax year that can be used to imply the legal 'tax year'
+				that would be equivalent to the 'calendar year', but also to imply
+				the 'tax season'.
+				For example, dates after '1/1/(X+1)' and before approximately
+				'4/15/(X+1)' would still
+				be dealing with tax season=X.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1990" />
+			<xs:maxInclusive value="2030" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="DateEndpoint">
+		<xs:simpleContent>
+			<xs:extension base="xs:date">
+				<xs:attribute name="inclusive" type="xs:boolean"
+					default="true" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="DateRange">
+		<xs:annotation>
+			<xs:documentation>a date range with inclusive endpoints
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="start"  type="DateEndpoint" />
+			<xs:element name="finish" type="DateEndpoint" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

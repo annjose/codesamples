@@ -1,0 +1,1335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema targetNamespace="http://cfp.intuit.com/service/taxreturn"
+	xmlns="http://cfp.intuit.com/service/taxreturn" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+	xmlns:taxreturn-types="http://cfp.intuit.com/service/taxreturn/types"
+	xmlns:cfp="http://cfp.intuit.com/base" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	jaxb:version="2.0">
+
+	<xs:import namespace="http://cfp.intuit.com/base" schemaLocation="base.xsd"/>
+	<xs:import namespace="http://cfp.intuit.com/service/taxreturn/types"
+		schemaLocation="taxreturntypes.xsd"/>
+
+	<xs:element name="ListPdfTaxReturnsRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Definition of ListPdfTaxReturnsRequest Type </xs:documentation>  
+					<xs:documentation> Inherits from Service Platforms's RequestMessage Type
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Document Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+
+						</xs:element>
+						<xs:element name="taxYearRangeStart">
+							<xs:annotation>
+								<xs:documentation>Specifies Starting Range of Tax Year
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="(1|2)\d\d\d"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxYearRangeEnd">
+							<xs:annotation>
+								<xs:documentation>Specifies Ending Range of Tax Year
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="(1|2)\d\d\d"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ListPdfTaxReturnsResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Definition of ListPdfTaxReturnsResponse Type </xs:documentation>
+					<xs:documentation> Inherits from Service Platforms's ResponseMessage Type
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="documentInformation" type="DocumentInformation"
+							minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetPdfTaxReturnRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Definition of GetPdfTaxReturnRequest Type </xs:documentation>
+					<xs:documentation> Inherits from Service Platforms's GetRequest Type
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Document Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxDocumentId" type="taxreturn-types:DocumentId"/>
+						<xs:element name="rawResponse" type="xs:boolean" default="false"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetPdfTaxReturnResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Definition of GetPdfTaxReturnResponse Type </xs:documentation>
+					<xs:documentation> Inherits from Service Platforms's Response Type
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+						<xs:element name="document" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="GetPriorYearLegacyTaxReturnRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Definition of PriorYearLegacyTaxDocumentRequest Type </xs:documentation>
+					<xs:documentation> Inherits from Service Platforms's GetRequest Type
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Document Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="rawResponse" type="xs:boolean" default="false"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetPriorYearLegacyTaxReturnResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Definition of PriorYearLegacyTaxDocumentResponse Type </xs:documentation>
+					<xs:documentation> Inherits from Service Platforms's Response Type
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="document" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CreateReturnRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Tax Return Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CreateReturnResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+						<xs:element name="document" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetReturnRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Tax Return Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxDocumentId" type="taxreturn-types:DocumentId"/>
+						<xs:element name="version" type="VersionSpec" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetReturnResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+						<xs:element name="document" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetReturnsAttributesRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Tax Return Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxDocumentIdList" type="taxreturn-types:DocumentId"
+							maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetReturnsAttributesResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="documentInformationList" type="DocumentInformation"
+							minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PutReturnRequest">
+		<xs:annotation>
+			<xs:documentation> Client can save either TaxML or FormML, we will convert as necessary
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Tax Return Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="document" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream"/>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+						<xs:element name="force" type="VersionSpec" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PutReturnResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DeleteReturnRequest">
+		<xs:annotation>
+			<xs:documentation> Removes the visibility of the CFDP entity key, but does not delete
+				the document or its versions. Subsequent calls to List will no longer include this
+				document. The CFDP entity key remains valid and a subsequent call to Put will
+				succeed and undelete the document (make it visible again). Subsequent calls to Get
+				should fail unless a specific version is provided. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Tax Return Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxDocumentId" type="taxreturn-types:DocumentId"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DeleteReturnResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage"> </xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ListReturnsRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Definition of ListReturnsRequest Type </xs:documentation>
+					<xs:documentation> Inherits from Service Platforms's RequestMessage Type
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Document Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxYearRangeStart">
+							<xs:annotation>
+								<xs:documentation>Specifies Starting Range of Tax Year
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="(1|2)\d\d\d"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxYearRangeEnd">
+							<xs:annotation>
+								<xs:documentation>Specifies Ending Range of Tax Year
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="(1|2)\d\d\d"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="format" type="taxreturn-types:FormatEnum" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ListReturnsResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="documentInformationList" type="DocumentInformationList"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CreateTaxReturnCEDataRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Document Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+						<xs:element name="inputFormat" type="CEDataFormat" minOccurs="0"/>
+						<xs:element name="document" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CreateTaxReturnCEDataResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetTaxReturnCEDataRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Document Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxDocumentId" type="taxreturn-types:DocumentId"/>
+						<xs:element name="version" type="VersionSpec" minOccurs="0"/>
+						<xs:element name="outputFormat" type="CEDataFormat" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetTaxReturnCEDataResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="document" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream"> </xs:element>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="UpdateTaxReturnCEDataRequest">
+		<xs:annotation>
+			<xs:documentation> Client can update CE Data </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Document Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="document" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream"/>
+						<xs:element name="inputFormat" type="CEDataFormat" minOccurs="0"/>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+						<xs:element name="calculateTax" type="xs:boolean" minOccurs="0"
+							maxOccurs="1"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="UpdateTaxReturnCEDataResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+						<xs:element name="document" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DeleteTaxReturnCEDataRequest">
+		<xs:annotation>
+			<xs:documentation> Removes the visibility of the CFDP entity key, but does not delete
+				the document or its versions. Subsequent calls to List will no longer include this
+				document. The CFDP entity key remains valid and a subsequent call to Put will
+				succeed and undelete the document (make it visible again). Subsequent calls to Get
+				should fail unless a specific version is provided. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Document Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxDocumentId" type="taxreturn-types:DocumentId"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DeleteTaxReturnCEDataResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage"> </xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="CEDataFormat">
+		<xs:annotation>
+			<xs:documentation>Document format to be returned -- if not provided the default is JSON
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="json">
+				<xs:annotation>
+					<xs:documentation>JSON - the default document format </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="xml">
+				<xs:annotation>
+					<xs:documentation>XML - no conversion to JSON</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="DocumentInformationList">
+		<xs:sequence>
+			<xs:element name="documentInformation" type="DocumentInformation" minOccurs="0"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="DocumentInformation">
+		<xs:annotation>
+			<xs:documentation>Definition of Document Information Type </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="key" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> Leave the key null if you want to create and save a new
+						document </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="format" type="taxreturn-types:FormatEnum" minOccurs="0"/>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="taxYear">
+				<xs:annotation>
+					<xs:documentation>Specifies Tax Year</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="(1|2)\d\d\d"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="appSku" type="taxreturn-types:AppSku" minOccurs="0"/>
+			<xs:element name="applicationId" type="taxreturn-types:AppId" minOccurs="0"/>
+			<xs:element name="version" type="VersionSpec" minOccurs="0"/>
+			<xs:element name="deviceId" type="xs:string" minOccurs="0"/>
+			<xs:element name="deviceName" type="xs:string" minOccurs="0"/>
+			<xs:element name="attributes" type="AttributeList" minOccurs="0"/>
+			<xs:element name="baseVersionTimestamp" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="KeyValue">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string"/>
+			<xs:element name="value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AttributeList">
+		<xs:sequence>
+			<xs:element name="attribute" type="KeyValue" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="VersionSpec">
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="TransferTypeEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="disqual"/>
+			<xs:enumeration value="fnf"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="TransferTaxReturnToCoreRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Definition of TransferTaxReturnToCoreRequest Type </xs:documentation>
+					<xs:documentation> Inherits from Service Platforms's GetRequest Type
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation>Identity of a Document Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxDocumentId" type="taxreturn-types:DocumentId"
+							minOccurs="1">
+							<xs:annotation>
+								<xs:documentation>This id MUST have a corresponding CE Data Model
+									not simply a taxml document </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="offeringId" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation>This id is the OfferingID of the client
+									application. Example: TaxPrep </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="transferType" type="TransferTypeEnum" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>This indicates the type - each type requires
+									different bookmarks to be passed to TTO Entry Service
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="TransferTaxReturnToCoreResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Definition of TransferTaxReturnToCoreResponse Type </xs:documentation>
+					<xs:documentation> Inherits from Service Platforms's Response Type
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="url">
+							<xs:annotation>
+								<xs:documentation>The URL that the client will use for transfer
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="parameter" type="KeyValue" minOccurs="0"
+							maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>The parameters that the client will use for
+									transfer </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetTaxReturnStatusRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Definition of GetTaxReturnFilingState Type </xs:documentation>
+					<xs:documentation> Inherits from Service Platforms's GetRequest Type
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Document Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxDocumentId" type="taxreturn-types:DocumentId"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetTaxReturnStatusResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Definition of GetTaxReturnFilingStateResponse Type </xs:documentation>
+					<xs:documentation> Inherits from Service Platforms's Response Type
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="taxStatus" type="taxreturn-types:TaxReturnStatus">
+							<xs:annotation>
+								<xs:documentation>Status information for user's tax return.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="GetTaxReturnStatusLiteRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Definition of GetTaxReturnStatusLiteRequest Type </xs:documentation>
+					<xs:documentation> Inherits from Service Platforms's GetRequest Type. Works with
+						only current year tax returns, EFE authid limitation </xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Document Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxDocumentId" type="taxreturn-types:DocumentId"
+							minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Pass a specific current year tax return or gets
+									all returns for current year </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetTaxReturnStatusLiteResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Definition of GetTaxReturnStatusLiteResponse Type </xs:documentation>
+					<xs:documentation> Inherits from Service Platforms's Response Type
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="taxStatus" type="taxreturn-types:TaxReturnStatusLite">
+							<xs:annotation>
+								<xs:documentation>Status information for user's tax return.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="GetTaxReturnStatusesForAllRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Finds all tax returns belonging to the user identified by
+						"documentOwnerId". Then looks up and returns information about each tax
+						return, including tax summary, efe status, refund info, etc.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0" type="cfp:StringNE">
+							<xs:annotation>
+								<xs:documentation>Identity of a Document Owner </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="taxYearRangeStart">
+							<xs:annotation>
+								<xs:documentation>Specifies Starting Range of Tax Year
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:annotation>
+									<xs:documentation>FIXME: Refactor into a "ValidTaxYear" type.
+										And it should probably be of this pattern: "20\d\d", up to
+										year 2099 </xs:documentation>
+								</xs:annotation>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="(1|2)\d\d\d"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxYearRangeEnd">
+							<xs:annotation>
+								<xs:documentation>Specifies Ending Range of Tax Year
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="(1|2)\d\d\d"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetTaxReturnStatusesForAllResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Returns information about each tax return that a user has,
+						including tax summary, efe status, refund info, etc. </xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="taxStatuses" type="taxreturn-types:TaxReturnStatus"
+							minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>A list of status information for each tax return
+									owned by the user. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Get2011TaxReturnCompletedRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Finds all tax returns belonging to the user identified by
+						"documentOwnerId". Then looks up and returns whether the return was filed.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0" type="cfp:StringNE">
+							<xs:annotation>
+								<xs:documentation>Identity of a Document Owner </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Get2011TaxReturnCompletedResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:annotation>
+					<xs:documentation>Returns information about each tax return that a user has,
+						including tax summary, efe status, refund info, etc. </xs:documentation>
+				</xs:annotation>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="CompletionExists" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>True if the ownerId has a 2011 pdf which implies
+									completion, otherwise false. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PutPdfTaxReturnRequest">
+		<xs:annotation>
+			<xs:documentation> Client can save PDF of an associated Tax Return </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Tax Return Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="document" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream"/>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PutPdfTaxReturnResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="documentInformation" type="DocumentInformation"
+						> </xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PutCombinedPayloadRequest">
+		<xs:annotation>
+			<xs:documentation> Client can post combined payload containing either TaxML and DotTax,
+				or other combination </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Tax Return Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+						<xs:element name="combinedPayload" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream"/>
+						<xs:element name="force" type="VersionSpec" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PutCombinedPayloadResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="PutEfeCombinedPayloadRequest">
+		<xs:annotation>
+			<xs:documentation> Client can post combined payload containing either Formml and DotTax,
+				or other combination </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+						<xs:element name="combinedPayload" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PutEfeCombinedPayloadResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="documentInformation" type="DocumentInformation"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PutTaxComplianceDocumentRequest">
+		<xs:annotation>
+			<xs:documentation> Client can post payload containing TaxML </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Tax Return Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxDocumentId" type="taxreturn-types:DocumentId"/>
+						<xs:element name="taxDocumentVersion" type="VersionSpec" minOccurs="0"/>
+						<xs:element name="document" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PutTaxComplianceDocumentResponse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="taxDocumentId" type="taxreturn-types:DocumentId"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+
+
+	<xs:element name="PostEfileEventRequest">
+		<xs:annotation>
+			<xs:documentation> Notify Tax Document being e-filed </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Tax Return Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxDocumentId" type="taxreturn-types:DocumentId"/>
+						<xs:element name="taxDocumentVersion" type="VersionSpec" minOccurs="0"/>
+						<xs:element name="filingId">
+							<xs:annotation>
+								<xs:documentation>EFE Filing Id</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="filingTypeList" type="taxreturn-types:FilingAgencyType"
+							minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="eventDate" type="xs:dateTime"/>
+						<xs:element name="paymentMethod" type="taxreturn-types:PaymentMethodType"
+							minOccurs="0"/>
+
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>filing status</xs:documentation>
+							</xs:annotation>
+							<xs:element name="filingStatus" type="taxreturn-types:EfeFilingStatus"/>
+							<xs:choice>
+								<xs:annotation>
+									<xs:documentation> Two ways of passing the filing status.
+									</xs:documentation>
+								</xs:annotation>
+								<xs:sequence>
+									<xs:annotation>
+										<xs:documentation> Choice 1 of 2: pass the status as
+											elements (preferred) </xs:documentation>
+									</xs:annotation>
+									<xs:element name="filingStatusMessage" type="xs:string"
+										minOccurs="0"/>
+									<xs:element name="postmarkDate" type="xs:dateTime" minOccurs="0"/>
+									<xs:element name="debtCode" type="xs:string" minOccurs="0"/>
+									<xs:element name="balanceDue" type="xs:decimal" minOccurs="0"/>
+									<xs:element name="eicIndicator" type="xs:string" minOccurs="0"/>
+									<xs:element name="hold" maxOccurs="10" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="holdReason" type="xs:string"/>
+												<xs:element name="holdText" type="xs:string"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="error" maxOccurs="20" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="errorCode" type="xs:string"/>
+												<xs:element name="errorXPath" type="xs:string"/>
+												<xs:element name="errorMessage" type="xs:string"/>
+												<xs:element name="errorFormName" type="xs:string"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+
+								</xs:sequence>
+								<xs:sequence>
+									<xs:annotation>
+										<xs:documentation> Choice 2 of 2: pass the status as an
+											opaque document (not preferred) </xs:documentation>
+									</xs:annotation>
+									<xs:element name="eventPayload" type="xs:base64Binary"
+										xmime:expectedContentTypes="application/octet-stream">
+										<xs:annotation>
+											<xs:documentation>Filing Status Document -
+												http://wikis.intuit.com/CTG/index.php/EFE-DP_Interface_Spec
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:choice>
+						</xs:sequence>
+						<xs:sequence minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>refund status</xs:documentation>
+							</xs:annotation>
+							<xs:element name="refundStatus" type="RefundStatus"/>
+							<xs:element name="fundingStatusSourceDetail" type="FundingStatusSource"
+							/>
+						</xs:sequence>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="RefundStatus">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FUNDED">
+				<xs:annotation>
+					<xs:documentation>the refund has been received or scheduled for payment within
+						next business day. FundingStatusSource tells us the source of this
+						knowledge</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PENDING_RETURN_ACCEPT">
+				<xs:annotation>
+					<xs:documentation>Processing of the refund is pending acceptance of the return
+						by the agency</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PROCESSING">
+				<xs:annotation>
+					<xs:documentation>The refund is being processed by the agency. A FUNDED event is
+						expected</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PROCESSING_OR_FUNDED">
+				<xs:annotation>
+					<xs:documentation>The refund is either in process or has been sent to the
+						customer. We do not expect a FUNDED event</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="FundingStatusSource">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MY_TAX_REFUND"/>
+			<xs:enumeration value="EMAIL_LINK"/>
+			<xs:enumeration value="REFUND_TRACKER"/>
+			<xs:enumeration value="TPG"/>
+			<xs:enumeration value="CARE_TOOL"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="PostEfileEventResponse">
+		<xs:annotation>
+			<xs:documentation> Response to Tax Document being e-filed </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="eventId" type="taxreturn-types:DocumentId"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PostPrintEventRequest">
+		<xs:annotation>
+			<xs:documentation> Notify Tax Document was printed </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:RequestMessage">
+					<xs:sequence>
+						<xs:element name="documentOwnerId" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identity of a Tax Return Owner </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value=".+"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="taxDocumentId" type="taxreturn-types:DocumentId"/>
+						<xs:element name="taxDocumentVersion" type="VersionSpec" minOccurs="0"/>
+						<xs:element name="eventDate" type="xs:dateTime"/>
+						<xs:element name="printType" type="taxreturn-types:PrintType"/>
+						<xs:element name="eventPayload" type="xs:base64Binary"
+							xmime:expectedContentTypes="application/octet-stream">
+							<xs:annotation>
+								<xs:documentation>Print Event Specification -
+									http://wikis.intuit.com/CTG/index.php/DP_Print_Event_specification
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="generatePdf" type="xs:boolean" minOccurs="0" maxOccurs="1"
+						/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PostPrintEventResponse">
+		<xs:annotation>
+			<xs:documentation> Notify Tax Document was printed </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cfp:ResponseMessage">
+					<xs:sequence>
+						<xs:element name="eventId" type="taxreturn-types:DocumentId"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

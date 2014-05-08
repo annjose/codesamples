@@ -1,0 +1,40 @@
+Open the grid-example file in this folder.
+
+Open grid.html in a web browser.
+
+Grids explained in detail here:
+http://getbootstrap.com/css/#grid
+
+Insert 4 rows into the body of the HTML page. First row is for nav, second for jumbotron, third for the 4 teasers, 4th for the footer. 
+
+In the 3rd row, set this up to show 4 images across at sm/md/lg sizes, plus 2 rows of images with 2 images per row at xs size.
+
+4th row: change to footer tag, insert a copyright statement.
+
+NOTE: nav tag will be inserted ***later*** for the navigation row.
+
+	<div class="container">
+    	<div class="row">
+        		<!-- navigation goes here -->
+        </div>
+        <div class="row">
+				<!-- jumbotron goes here -->
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-xs-6">
+                <!-- apples -->
+          	</div>
+            <div class="col-sm-3 col-xs-6">
+                <!-- bananas -->
+          	</div>
+            <div class="col-sm-3 col-xs-6">
+                <!-- oranges -->
+          	</div>
+            <div class="col-sm-3 col-xs-6">
+                <!-- fruit gallery -->
+          	</div>
+        </div>
+        <footer class="row">
+                <p>Up & Running with Bootstrap Workshop. &copy; 2013 Jen Kramer. All rights reserved.</p>
+        </footer>
+	</div>

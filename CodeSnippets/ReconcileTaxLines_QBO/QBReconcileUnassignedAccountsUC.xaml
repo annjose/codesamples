@@ -1,0 +1,119 @@
+﻿<UserControl     
+    x:Class="Intuit.Ctg.Wte.Service.EasyStep.Import.QuickBooks.QBReconcileUnassignedAccountsUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mapUI="clr-namespace:Intuit.Ctg.Map.UI.Wpf;assembly=Intuit.Ctg.Map"
+    xmlns:mapVM="clr-namespace:Intuit.Ctg.Map.ViewModel;assembly=Intuit.Ctg.Map"
+    Height="500" 
+    Width="600"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="pack://application:,,,/Intuit.Ctg.Wte.Service;Component/Interview/Interview/WPF/InterviewResources.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/Intuit.Ctg.Map;Component/UI/Wpf/SortableListViewResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+          <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+          <mapVM:NotBooleanVisibilityConverter x:Key="NotBooleanToVisibilityConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+        
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="180" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>  
+        
+        <TextBlock
+            Grid.Row="0"
+            HorizontalAlignment="Left"
+            Style="{StaticResource titleStyle}">
+						Assign a Tax Line to These Accounts
+				</TextBlock>       
+        
+        <TextBlock
+            Grid.Row="1"
+            Margin="10,0,0,0"
+            TextWrapping="Wrap"
+            Style="{StaticResource mainStyle}">
+						Select an appropriate tax line for the following accounts to continue import
+				</TextBlock>
+        
+        <mapUI:SortableListView
+            Name="ReconciledAccountList"
+            Grid.Row="2"
+						ItemsSource="{Binding ReconciledAccountCollection, Mode=TwoWay}"
+            SelectedItem="{Binding Path=SelectedReconciledAccount}"
+            ItemContainerStyle="{StaticResource headLinesGridViewStyle}"
+            ColumnHeaderSortedAscendingTemplate="HeaderTemplateArrowUp"
+            ColumnHeaderSortedDescendingTemplate="HeaderTemplateArrowDown"
+            ColumnHeaderNotSortedTemplate="HeaderTemplateTransparent" Height="150" Margin="20,15,20,10">
+            <ListView.View>
+                <GridView
+                    ColumnHeaderContainerStyle="{StaticResource gridViewHeaderStyle}"
+                    ColumnHeaderTemplate="{StaticResource HeaderTemplateTransparent}">
+                    <mapUI:SortableGridViewColumn 
+                        DisplayMemberBinding="{Binding Path=QBAccount.Name}" 
+                        SortPropertyName="QBAccount.Name"
+                        Header="Account Name"                                        
+                        Width="180"/>  <!-- Width="410"--> <!-- Width="160"-->
+									<mapUI:SortableGridViewColumn
+												DisplayMemberBinding="{Binding Path=QBAccount.Amount}"
+												SortPropertyName="QBAccount.Amount"
+												Header="Amount"
+												Width="100"/>
+                  <mapUI:SortableGridViewColumn
+                      Header="Tax Category"
+                      Width="200">
+                      <GridViewColumn.CellTemplate>
+                      <DataTemplate>
+                        <ComboBox 
+                          Name="ReconcileAccountComboBox" 
+                          ItemsSource="{Binding Path=AssignableTaxLines, Mode=TwoWay}"
+                          DisplayMemberPath="Name"
+                          SelectedItem="{Binding Path=SelectedTaxLine}"
+                          Width="260">
+                        </ComboBox>
+                      </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                  </mapUI:SortableGridViewColumn>
+                </GridView>
+            </ListView.View>
+        </mapUI:SortableListView>
+       
+        <!-- Border line -->
+        <Border
+            Grid.Row="4"
+            Style="{StaticResource StyleEngineButtonSeparator}"
+            VerticalAlignment="Center" Margin="0,20,0,5"/>
+
+        <!-- Buttons -->
+        <DockPanel
+            Grid.Row="5" LastChildFill="False" VerticalAlignment="Top">
+					<Button
+						Command="{Binding Path=ReconcileAccountsCommand}"
+						Style="{StaticResource interviewButtonStyle}"
+						DockPanel.Dock="Right">Continue</Button>
+					<Button
+							Command="{Binding Path=ActionCommand}"
+							CommandParameter="kEPRC_Button2"
+							Style="{StaticResource interviewButtonStyle}"
+							DockPanel.Dock="Right">Continue Without Importing</Button>
+					<Button
+							Command="{Binding BackCommand}"
+							Style="{StaticResource interviewButtonStyle}"
+							DockPanel.Dock="Left">Back</Button>
+				</DockPanel>
+
+    </Grid>
+</UserControl>

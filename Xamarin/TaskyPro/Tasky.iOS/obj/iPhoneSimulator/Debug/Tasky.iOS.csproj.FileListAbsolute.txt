@@ -1,0 +1,6 @@
+D:\Dev\CodeSamples\XamarinTaskyPro\Tasky.iOS\bin\iPhoneSimulator\Debug\Tasky.exe.config
+D:\Dev\CodeSamples\XamarinTaskyPro\Tasky.iOS\bin\iPhoneSimulator\Debug\Tasky.exe
+D:\Dev\CodeSamples\XamarinTaskyPro\Tasky.iOS\bin\iPhoneSimulator\Debug\Tasky.pdb
+D:\Dev\CodeSamples\XamarinTaskyPro\Tasky.iOS\obj\iPhoneSimulator\Debug\Tasky.iOS.csprojResolveAssemblyReference.cache
+D:\Dev\CodeSamples\XamarinTaskyPro\Tasky.iOS\obj\iPhoneSimulator\Debug\Tasky.exe
+D:\Dev\CodeSamples\XamarinTaskyPro\Tasky.iOS\obj\iPhoneSimulator\Debug\Tasky.pdb

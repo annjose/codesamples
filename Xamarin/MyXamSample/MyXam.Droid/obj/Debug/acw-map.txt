@@ -1,0 +1,1 @@
+MyXam.Droid.MainActivity;myxam.droid.MainActivity

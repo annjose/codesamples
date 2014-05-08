@@ -1,0 +1,12 @@
+                    // Set auth preferences to customize the dialog
+                    IAuthPreferences authPreferences = myReqProcessor.AuthPreferences;
+                    IAuthPreferences2 authPreferences2 = authPreferences as IAuthPreferences2;
+                    if(authPreferences2 != null)
+                    {
+                        authPreferences2.PutUnattendedModePref(QBXMLRPUnattendedModePrefType.umpRequired);
+                        authPreferences2.PutPersonalDataPref(QBXMLRPPersonalDataPrefType.pdpNotNeeded);
+                        authPreferences2.PutIsReadOnly(true);
+                    }
+                    
+                    
+                    

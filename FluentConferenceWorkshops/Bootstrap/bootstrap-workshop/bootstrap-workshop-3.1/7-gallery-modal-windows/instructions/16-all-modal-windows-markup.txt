@@ -1,0 +1,160 @@
+﻿  Final markup for all modal windows and thumbnails below.
+
+  http://getbootstrap.com/javascript/#modals 
+  
+  Thumbnails:
+  
+<!-- thumbnails, using thumbnail markup -->
+              <ul>
+                <li class="col-sm-3 col-xs-4 thumbnail"><a href="#raspberries" data-toggle="modal"><img src="img/thumbs/raspberries.jpg" alt="Raspberries. " class="img-responsive"></a></li>
+                <li class="col-sm-3 col-xs-4 thumbnail"><a href="#blueberries" data-toggle="modal"><img src="img/thumbs/blueberries.jpg" alt="Blueberries. " class="img-responsive"></a></li>
+                <li class="col-sm-3 col-xs-4 thumbnail"><a href="#tangerine" data-toggle="modal"><img src="img/thumbs/tangerine.jpg" alt="Tangerine. " class="img-responsive"></a></li>
+                <li class="col-sm-3 col-xs-4 thumbnail"><a href="#strawberries" data-toggle="modal"><img src="img/thumbs/strawberries.jpg" alt="Strawberries. " class="img-responsive"></a></li>
+                <li class="col-sm-3 col-xs-4 thumbnail"><a href="#slice" data-toggle="modal"><img src="img/thumbs/slice.jpg" alt="Orange slice. " class="img-responsive"></a></li>
+                <li class="col-sm-3 col-xs-4 thumbnail"><a href="#fruit" data-toggle="modal"><img src="img/thumbs/fruit.jpg" alt="Fruit. " class="img-responsive"></a></li>
+                <li class="col-sm-3 col-xs-4 thumbnail"><a href="#berries" data-toggle="modal"><img src="img/thumbs/berries.jpg" alt="Berries. " class="img-responsive"></a></li>
+                <li class="col-sm-3 col-xs-4 thumbnail"><a href="#lime" data-toggle="modal"><img src="img/thumbs/lime.jpg" alt="Lime. " class="img-responsive"></a></li>
+              </ul>
+  
+  
+  
+  Modal windows:
+  
+  
+       
+        <!-- modal windows -->
+        <div id="raspberries" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                        <h3 class="modal-title">Raspberries</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p><img src="img/large/raspberries.jpg" alt="raspberries!" class="img-responsive"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="blueberries" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                        <h3 class="modal-title">Blueberries</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p><img src="img/large/blueberries.jpg" alt="Blueberries!" class="img-responsive"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+       <div id="tangerine" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                        <h3 class="modal-title">Tangerine</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p><img src="img/large/tangerine.jpg" alt="Tangerine!" class="img-responsive"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="strawberries" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                        <h3 class="modal-title">Strawberries</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p><img src="img/large/strawberries.jpg" alt="Strawberries!" class="img-responsive"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="slice" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                        <h3 class="modal-title">Orange slice</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p><img src="img/large/slice.jpg" alt="Orange slice!" class="img-responsive"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="fruit" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                        <h3 class="modal-title">Fruit</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p><img src="img/large/fruit.jpg" alt="Fruit!" class="img-responsive"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="berries" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                        <h3 class="modal-title">Berries</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p><img src="img/large/berries.jpg" alt="Berries!" class="img-responsive"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="lime" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                        <h3 class="modal-title">Lime</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p><img src="img/large/lime.jpg" alt="Lime!" class="img-responsive"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>

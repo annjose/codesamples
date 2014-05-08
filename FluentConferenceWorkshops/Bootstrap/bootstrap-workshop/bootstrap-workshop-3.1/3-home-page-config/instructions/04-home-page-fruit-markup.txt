@@ -1,0 +1,42 @@
+<!-- Bits of HTML markup belonging in the boxes on the home page.  -->              
+
+
+		<h3>Apples</h3>
+        <p><a href="apples.html"><img src="img/apple-300.jpg" alt="Apples! " class="img-responsive"></a></p>
+        <p>Yummy delicious apples.</p>
+        <p><a href="apples.html">Read more &gt;&gt;</a></p>	
+
+
+
+<h3>Bananas</h3>
+<p><a href="bananas.html"><img src="img/bananas-300.jpg" alt="Bananas! " class="img-responsive"></a></p>
+<p>Yummy delicious bananas.</p>
+<p><a href="bananas.html">Read more &gt;&gt;</a></p>
+
+
+
+                <h3>Oranges</h3>
+                <p><a href="oranges.html"><img src="img/orange-300.jpg" alt="Orange! " class="img-responsive"></a></p>
+                <p>Yummy delicious oranges.</p>
+                <p><a href="oranges.html">Read more &gt;&gt;</a></p>
+
+
+
+                <h3>Fruit Gallery</h3>
+                <p><a href="gallery.html"><img src="img/cherry-300.jpg" alt="Cherries! " class="img-responsive"></a></p>
+                <p>Yummy delicious fruit of all kinds.</p>
+                <p><a href="gallery.html">Read more &gt;&gt;</a></p>
+
+
+
+
+In addition to the above markup, we added classes to the "read more" links, to the a tag markup. 
+http://getbootstrap.com/css/#buttons
+
+btn: makes it a button
+btn-xs, btn-sm, btn-lg -- changes size
+btn-default, btn-primary, btn-info, btn-success, btn-warning, btn-danger, btn-link -- changes color
+
+Must combine btn plus one of the color variants to make a button. Size is optional. Button will not render with just btn or just btn-primary (for example) -- both are required.
+
+Colors are determined via LESS. You can override color either by writing a custom style in custom.css or by tweaking the LESS variable (covered later in this workshop).

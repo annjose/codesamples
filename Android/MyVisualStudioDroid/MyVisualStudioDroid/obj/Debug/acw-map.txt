@@ -1,0 +1,1 @@
+MyVisualStudioDroid.Activity1;myvisualstudiodroid.Activity1

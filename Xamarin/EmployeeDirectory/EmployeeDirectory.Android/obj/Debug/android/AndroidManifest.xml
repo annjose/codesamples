@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="EmployeeDirectory.Android">
+  <uses-sdk android:minSdkVersion="14" />
+  <uses-permission android:name="android.permission.CALL_PHONE" />
+  <application android:icon="@drawable/icon" android:label="Employees" android:name="employeedirectory.android.Application" android:theme="@style/CustomHoloTheme" android:debuggable="true">
+    <activity android:label="@string/app_name" android:launchMode="singleTop" android:name="employeedirectory.android.LoginActivity" />
+    <activity android:label="Search" android:name="employeedirectory.android.SearchActivity">
+      <meta-data android:name="android.app.searchable" android:resource="@xml/searchable" />
+      <intent-filter>
+        <action android:name="android.intent.action.SEARCH" />
+      </intent-filter>
+    </activity>
+    <activity android:label="@string/app_name" android:name="employeedirectory.android.MainActivity">
+      <meta-data android:name="android.app.default_searchable" android:value="employeedirectory.android.SearchActivity" />
+    </activity>
+    <activity android:label="Person" android:name="employeedirectory.android.PersonActivity" />
+    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="EmployeeDirectory.Android.mono.MonoRuntimeProvider.__mono_init__" />
+    <receiver android:name="mono.android.Seppuku">
+      <intent-filter>
+        <action android:name="mono.android.intent.action.SEPPUKU" />
+        <category android:name="mono.android.intent.category.SEPPUKU.EmployeeDirectory.Android" />
+      </intent-filter>
+    </receiver>
+    <activity android:label="@string/app_name" android:launchMode="singleTop" android:name="employeedirectory.android.TrialSplashScreen" android:theme="@style/Mono.Android.Theme.Splash" android:noHistory="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+  </application>
+  <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

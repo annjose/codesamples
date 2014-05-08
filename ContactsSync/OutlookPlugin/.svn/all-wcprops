@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/2/trunk/OutlookPlugin
+END
+OutlookPlugin.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/5/trunk/OutlookPlugin/OutlookPlugin.csproj
+END
+Program.cs
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/6/trunk/OutlookPlugin/Program.cs
+END
+ContactUtil.cs
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/5/trunk/OutlookPlugin/ContactUtil.cs
+END

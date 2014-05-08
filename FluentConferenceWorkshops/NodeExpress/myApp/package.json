@@ -1,0 +1,14 @@
+{
+  "name": "myApp",
+  "version": "0.0.0",
+  "description": "My test app for Fluent 2014",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ann Catherine Jose",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+  	"express" : "3.x"
+  }
+}

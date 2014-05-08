@@ -1,0 +1,1 @@
+D:\Dev\CodeSamples\Xamarin\MyXamSample\MyXam.Droid\bin\Debug\MyXam.Droid.dll

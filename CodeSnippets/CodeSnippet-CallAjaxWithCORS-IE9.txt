@@ -1,0 +1,44 @@
+                // Create CORS-enabled request using plain old XmlHttpRequest
+                // Note: Most browsers (IE10 and above, Chrome, Firefox Opera & Safari) support CORS in XmlHttpRequest; 
+                //      whereas, IE9- supports CORS on XDomainRequest only. So we have to create the appropriate request
+                function CreateCORSRequest(method, url) {
+                    var xhr = new XMLHttpRequest();
+                    if ("withCredentials" in xhr) {
+                        // Use regular XHR for Chrome/Firefox/Opera/Safari.
+                        xhr.open(method, url, /*async*/ false);
+                    } else if (typeof XDomainRequest != "undefined") {
+                        // Create XDomainRequest for IE9-
+                        xhr = new XDomainRequest();
+                        xhr.open(method, url);
+                    } else {
+                        // Browser doesn't support CORS
+                        console.log('Browser does not support CORS');
+                        xhr = null;
+                    }
+                    return xhr;
+                }
+
+                // Gets widget content with CORS
+                function GetWidgetContent(async, callback) {
+                    var $ = window.jQuery;;
+                    var widgetContent = "";
+
+                    // Create AJAX request using regular XmlHttpRequest (we cannot jQuery because all browsers don't support CORS on XHR)
+                    var xhr = CreateCORSRequest('GET', widgetTemplateUrl);
+                    if (!xhr) {
+                        alert('CORS not supported');
+                        return;
+                    }
+
+                    // Define the response handlers - success and error
+                    xhr.onload = function () {
+                        widgetContent = xhr.responseText;
+                    };
+                    xhr.onerror = function () {
+                        alert('Woops, there was an error making the request.');
+                    };
+
+                    xhr.send();
+
+                    return widgetContent;
+                }

@@ -1,0 +1,37 @@
+Jumbotron: http://getbootstrap.com/components/#type-components
+
+
+Add code below to line 19 in index.html  
+
+		<div class="jumbotron">
+                	<img src="img/fruit-500.jpg" alt=" Fruit is yummy! ">
+                    <h1>Fruit is delicious</h1>
+                    <p>Fruit makes a great snack, or slice it up and eat it with a meal. Portable, sweet, and filling, you can take fruit anywhere, even to a Bootstrap workshop!</p>
+                </div>
+				
+				
+				
+Additional classes added:
+
+To the image tag, add class  
+	img-circle -- turns image into a circle. 
+	(other options include img-rounded, img-thumbnail)
+	http://getbootstrap.com/css/#images
+				
+To the div/jumbotron, additional classes  
+	clearfix -- clears the image
+	http://getbootstrap.com/css/#helper-classes
+
+
+				
+				
+To the image inside the jumbotron, add class				
+	pull-right -- floats the image right. Guess what to use for making the image float left instead?
+	http://getbootstrap.com/css/#helper-classes
+
+	img-responsive -- makes the image resize responsively. Image stays a fixed size otherwise.
+	http://getbootstrap.com/css/#overview-responsive-images
+				
+
+
+

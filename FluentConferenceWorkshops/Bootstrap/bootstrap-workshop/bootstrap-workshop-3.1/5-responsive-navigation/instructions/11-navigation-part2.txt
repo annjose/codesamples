@@ -1,0 +1,37 @@
+Remove the navigation currently on the site and copy in this code: 
+
+            <nav class="navbar navbar-default" role="navigation">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Fruit is Good</a>
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="apples.html">Apples</a></li>
+                    <li><a href="oranges.html">Citrus</a></li>
+                    <li><a href="bananas.html">Bananas</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+              </div>
+            </nav>
+
+
+Move the class of "active" on the li to the correct page you're on.
+
+Add navbar-inverse to nav tag to change it from white to black.
+
+
+Markup for site brand (optional -- you do not have to include this line )
+<a class="navbar-brand" href="index.html">Fruit is Good</a>
+
+
+http://getbootstrap.com/components/#navbar

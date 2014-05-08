@@ -1,0 +1,10 @@
+D:\TTax\Ty13\CFPSync\SampleXsdGenerator\SampleXsdGenerator\bin\Debug\SampleXsdGenerator.exe
+D:\TTax\Ty13\CFPSync\SampleXsdGenerator\SampleXsdGenerator\bin\Debug\SampleXsdGenerator.pdb
+D:\TTax\Ty13\CFPSync\SampleXsdGenerator\SampleXsdGenerator\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\TTax\Ty13\CFPSync\SampleXsdGenerator\SampleXsdGenerator\obj\x86\Debug\SampleXsdGenerator.exe
+D:\TTax\Ty13\CFPSync\SampleXsdGenerator\SampleXsdGenerator\obj\x86\Debug\SampleXsdGenerator.pdb
+E:\TTax\TY13\CFPSync\SampleXsdGenerator\SampleXsdGenerator\obj\x86\Debug\SampleXsdGenerator.exe
+E:\TTax\TY13\CFPSync\SampleXsdGenerator\SampleXsdGenerator\obj\x86\Debug\SampleXsdGenerator.pdb
+E:\TTax\TY13\CFPSync\SampleXsdGenerator\SampleXsdGenerator\bin\Debug\SampleXsdGenerator.exe
+E:\TTax\TY13\CFPSync\SampleXsdGenerator\SampleXsdGenerator\bin\Debug\SampleXsdGenerator.pdb
+E:\TTax\TY13\CFPSync\SampleXsdGenerator\SampleXsdGenerator\obj\x86\Debug\SampleXsdGenerator.csprojResolveAssemblyReference.cache

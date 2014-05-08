@@ -1,0 +1,13 @@
+D:\Dev\CodeSamples\Android\MyVisualStudioDroid\MyVisualStudioDroid\bin\Debug\MyVisualStudioDroid.dll
+D:\Dev\CodeSamples\Android\MyVisualStudioDroid\MyVisualStudioDroid\bin\Debug\MyVisualStudioDroid.pdb
+D:\Dev\CodeSamples\Android\MyVisualStudioDroid\MyVisualStudioDroid\bin\Debug\MyVisualStudioDroid.dll.mdb
+D:\Dev\CodeSamples\Android\MyVisualStudioDroid\MyVisualStudioDroid\bin\Debug\MyVisualStudioDroid.MyVisualStudioDroid.apk
+D:\Dev\CodeSamples\Android\MyVisualStudioDroid\MyVisualStudioDroid\bin\Debug\MyVisualStudioDroid.MyVisualStudioDroid-Signed.apk
+D:\Dev\CodeSamples\Android\MyVisualStudioDroid\MyVisualStudioDroid\obj\Debug\MyVisualStudioDroid.dll
+D:\Dev\CodeSamples\Android\MyVisualStudioDroid\MyVisualStudioDroid\obj\Debug\MyVisualStudioDroid.pdb
+D:\Dev\CodeSamples\Android\MyVisualStudioDroid\MyVisualStudioDroid\obj\Debug\android\bin\MyVisualStudioDroid.MyVisualStudioDroid.apk
+D:\Dev\CodeSamples\Android\MyVisualStudioDroid\MyVisualStudioDroid\obj\Debug\res\layout\main.xml
+D:\Dev\CodeSamples\Android\MyVisualStudioDroid\MyVisualStudioDroid\obj\Debug\res\values\strings.xml
+D:\Dev\CodeSamples\Android\MyVisualStudioDroid\MyVisualStudioDroid\obj\Debug\res\drawable\icon.png
+D:\Dev\CodeSamples\Android\MyVisualStudioDroid\MyVisualStudioDroid\obj\Debug\R.cs.flag
+D:\Dev\CodeSamples\Android\MyVisualStudioDroid\MyVisualStudioDroid\obj\Debug\uploadflags.txt

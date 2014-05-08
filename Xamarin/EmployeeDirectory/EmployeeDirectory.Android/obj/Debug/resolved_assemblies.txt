@@ -1,0 +1,2 @@
+D:\Dev\CodeSamples\XamarinEmployeeDirectory\EmployeeDirectory.Android\bin\Debug\EmployeeDirectory.Android.dll
+D:\Dev\CodeSamples\XamarinEmployeeDirectory\Dependencies\Novell.Directory.Ldap\Novell.Directory.Ldap.Android.dll

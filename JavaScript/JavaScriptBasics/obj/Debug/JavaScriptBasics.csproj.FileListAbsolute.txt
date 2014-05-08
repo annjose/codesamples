@@ -1,0 +1,6 @@
+E:\Samples\JavaScript\JavaScriptBasics\bin\JavaScriptBasics.dll
+E:\Samples\JavaScript\JavaScriptBasics\bin\JavaScriptBasics.pdb
+E:\Samples\JavaScript\JavaScriptBasics\obj\Debug\JavaScriptBasics.csprojResolveAssemblyReference.cache
+E:\Samples\JavaScript\JavaScriptBasics\obj\Debug\JavaScriptBasics.dll
+E:\Samples\JavaScript\JavaScriptBasics\obj\Debug\JavaScriptBasics.pdb
+E:\Samples\JavaScript\JavaScriptBasics\bin\JavaScriptBasics.dll.config

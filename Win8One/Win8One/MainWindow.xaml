@@ -1,0 +1,9 @@
+﻿<Window x:Class="Win8One.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Label Content="My first Windows 8 App" HorizontalAlignment="Left" Margin="177,57,0,0" VerticalAlignment="Top" Width="272"/>
+
+    </Grid>
+</Window>

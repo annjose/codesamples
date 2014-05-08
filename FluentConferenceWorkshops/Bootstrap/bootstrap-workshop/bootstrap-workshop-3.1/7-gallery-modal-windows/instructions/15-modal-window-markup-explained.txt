@@ -1,0 +1,38 @@
+﻿  To create modal windows, you need two pieces of code.
+  http://getbootstrap.com/javascript/#modals
+  
+  In each thumbnail:
+  Add  data-toggle="modal" to each A to bind the HTML to the Javascript.
+  
+  Add an ID to each modal window and associate it in the href attribute, i.e. href="#raspberries" (where the ID for the modal window is raspberries)
+  
+  Final code should look like this:
+  
+  <li class="col-sm-3 col-xs-4 thumbnail"><a href="#raspberries" data-toggle="modal"><img src="img/thumbs/raspberries.jpg" alt="Raspberries. " class="img-responsive"></a></li>
+  
+
+  
+  Now the code for the modal window:
+  
+        <div id="raspberries" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close glyphicon glyphicon-remove" data-dismiss="modal"></button>
+                        <h3 class="modal-title">Raspberries</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p><img src="img/large/raspberries.jpg" alt="raspberries!" class="img-responsive"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		This code can appear anywhere on the page (so I put it in the bottom of the content area, just above the footer).
+		The ID in the outside div must match the href attribute in the thumbnail link.
+		The divs with classes of modal-header, modal-body, and modal-footer are strictly for styling and are not required.
+		data-dismiss="modal" will close the window, and can be associated with a link or a button.
+		You can add additional classes for the buttons as seen on the home page (btn-large, btn-warning) for styling.

@@ -1,0 +1,6 @@
+E:\Samples\JavaScript\UnitTesting\bin\UnitTesting.dll.config
+E:\Samples\JavaScript\UnitTesting\bin\UnitTesting.dll
+E:\Samples\JavaScript\UnitTesting\bin\UnitTesting.pdb
+E:\Samples\JavaScript\UnitTesting\obj\Release\UnitTesting.csprojResolveAssemblyReference.cache
+E:\Samples\JavaScript\UnitTesting\obj\Release\UnitTesting.dll
+E:\Samples\JavaScript\UnitTesting\obj\Release\UnitTesting.pdb

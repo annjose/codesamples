@@ -1,0 +1,11 @@
+E:\Samples\Angular\bin\Angular.dll
+E:\Samples\Angular\bin\Angular.pdb
+E:\Samples\Angular\obj\Debug\Angular.csprojResolveAssemblyReference.cache
+E:\Samples\Angular\obj\Debug\Angular.dll
+E:\Samples\Angular\obj\Debug\Angular.pdb
+D:\Dev\CodeSamples\Angular\bin\Angular.dll.config
+D:\Dev\CodeSamples\Angular\bin\Angular.dll
+D:\Dev\CodeSamples\Angular\bin\Angular.pdb
+D:\Dev\CodeSamples\Angular\obj\Debug\Angular.csprojResolveAssemblyReference.cache
+D:\Dev\CodeSamples\Angular\obj\Debug\Angular.dll
+D:\Dev\CodeSamples\Angular\obj\Debug\Angular.pdb

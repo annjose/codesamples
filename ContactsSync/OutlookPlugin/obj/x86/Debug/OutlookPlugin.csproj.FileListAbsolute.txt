@@ -1,0 +1,7 @@
+D:\Samples\ContactsSync\OutlookPlugin\bin\Debug\ContactsSync.exe
+D:\Samples\ContactsSync\OutlookPlugin\bin\Debug\ContactsSync.pdb
+D:\Samples\ContactsSync\OutlookPlugin\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Samples\ContactsSync\OutlookPlugin\obj\x86\Debug\ContactsSync.exe
+D:\Samples\ContactsSync\OutlookPlugin\obj\x86\Debug\ContactsSync.pdb
+E:\Samples\ContactsSync\OutlookPlugin\obj\x86\Debug\ContactsSync.exe
+E:\Samples\ContactsSync\OutlookPlugin\obj\x86\Debug\ContactsSync.pdb

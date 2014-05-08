@@ -1,0 +1,132 @@
+/* sign up and sign in */
+
+#topNavBar h1 {
+                                                       border-bottom: 1px solid #555 !important;
+}
+#topNavBar .top-menu h2 {
+                                                       font-size: 120% !important;
+}
+
+#ius-form a {
+                                                       text-decoration: underline !important;
+}
+
+#ius-form #error-message {
+                                                       display: block;
+                                                       top: 20px;
+}
+
+#ius-form #error-message:after,
+#ius-form #error-message:before  {
+                                                       border: none !important;
+}
+
+#ius-form fieldset  {
+                                                       margin: 0;
+                                                       padding: 0 !important;
+                                                       position: relative;
+}
+
+#ius-sign-up a {
+                                                       text-decoration: underline !important;
+}
+
+
+
+#ius-form label.error {
+                                                       color: #fff !important;
+                                                       top: 4px;
+}
+
+#navbar-div .statusIcon {
+                                                       margin-top: 4px;
+}
+#ius-form .error.hide {
+                                                       display: none !important;
+}
+
+#ius-form #ius-remember,
+#ius-form #ius-sign-up-terms-of-use {
+                                                       margin-left: 170px;
+                                                       margin-bottom: 10px;
+                                                       margin-right: 5px;
+}
+
+#ius-form #ius-sign-up-btn {
+                                                       margin-left: 170px;
+}
+#ius-form .ius-error-status.statusIcon {
+                                                       display: none;
+}
+
+#ius-form select {
+                                                       margin: 2px 0 4px 0 !important;
+                                                       margin-right: 5px !important;
+}
+
+#ius-form input[type=text],
+#ius-form input[type=email],
+#ius-form input[type=password]
+{
+                                                       margin: 0;
+                                                       padding: 0;
+                                                       height: 20px;
+                                                       padding: 4px 6px !important;
+                                                       margin-bottom: 4px !important;
+                                                       margin-right: 5px !important;
+                                                       font-size: 14px;
+                                                       line-height: 20px;
+                                                       color: #555555;
+                                                       -webkit-border-radius: 4px;
+                                                       -moz-border-radius: 4px;
+                                                       border-radius: 4px;
+                                                       vertical-align: middle;
+}
+
+#ius-form fieldset label {
+                                                       display: inline-block !important;
+                                                       padding-top: 10px;
+}
+
+#ius-form fieldset label:first-child {
+                                                       float: left;
+                                                       width: 170px;
+                                                       white-space: nowrap;
+}
+
+#ius-form #ius-sign-up-password_pwdStrengthIndicator {
+                                                       position: absolute;
+                                                       left: 400px;
+                                                       top: 0px;
+}
+
+#ius-form fieldset #ius-sign-up-password_pwdStrengthIndicator ~ label,
+#ius-form fieldset #ius-sign-up-password_pwdStrengthIndicator + label
+{
+                                                       display: none !important;
+}
+
+#ius-form #ius-sign-in-username,
+#ius-form #ius-sign-in-password {
+                                                       width: 250px !important;
+}
+
+#ius-form #ius-sign-in-btn {
+                                                       float: none !important;
+                                                       margin-left: 170px;
+                                                       margin-top: 20px;
+}
+
+#topNavBar #ius-sign-in ul,
+#topNavBar #ius-sign-in ul li {
+                                                       float: none;
+                                                       text-align: left;
+                                                       line-height: 100% !important;
+                                                       margin-bottom: 0px !important;
+}
+
+#topNavBar #ius-sign-in fieldset label.error {
+                                                       display: none !important;
+}
+
+
