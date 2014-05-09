@@ -24,8 +24,21 @@ namespace MyXam.iOS
 			base.ViewDidLoad ();
 			
 			// Perform any additional setup after loading the view, typically from a nib.
-            buttonPrev.TouchUpInside += delegate { labelTitle.Text = "Prev clicked!"; };
-            buttonNext.TouchUpInside += delegate { labelTitle.Text = "Next clicked!"; };
+            buttonPrev.TouchUpInside += delegate
+                {
+                    labelTitle.Text = "Prev clicked!";
+                    textViewDescription.Text = "Detailed description for PREV button. Does this looks good? It is supposed to be split " +
+                                                "into multiple lines. Hope it is displayed that way!";
+                    imgCourse.Image = UIImage.FromBundle("flower1");
+                };
+            buttonNext.TouchUpInside += 
+                delegate 
+                { 
+                    labelTitle.Text = "Next clicked!";
+                    textViewDescription.Text = "Detailed description for NEXT button. Does this looks good? It is supposed to be split " +
+                                                "into multiple lines. Hope it is displayed that way!";
+                    imgCourse.Image = UIImage.FromBundle("flower2");
+                };
 		}
 	}
 }
