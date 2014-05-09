@@ -11,13 +11,13 @@ namespace MyXam.iOS
     public partial class AppDelegate : UIApplicationDelegate
     {
         UIWindow window;
-        MyViewController viewController;
+		CourseDetailsViewController viewController;
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            viewController = new MyViewController();
+			viewController = new CourseDetailsViewController();
             window.RootViewController = viewController;
 
             window.MakeKeyAndVisible();
