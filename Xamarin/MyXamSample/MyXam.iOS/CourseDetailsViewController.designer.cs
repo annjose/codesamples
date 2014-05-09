@@ -19,23 +19,39 @@ namespace MyXam.iOS
 		MonoTouch.UIKit.UIButton buttonPrev { get; set; }
 
 		[Outlet]
+		MonoTouch.UIKit.UIImageView imgCourse { get; set; }
+
+		[Outlet]
 		MonoTouch.UIKit.UILabel labelTitle { get; set; }
+
+		[Outlet]
+		MonoTouch.UIKit.UITextView textViewDescription { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (buttonPrev != null) {
-				buttonPrev.Dispose ();
-				buttonPrev = null;
-			}
-
 			if (buttonNext != null) {
 				buttonNext.Dispose ();
 				buttonNext = null;
 			}
 
+			if (buttonPrev != null) {
+				buttonPrev.Dispose ();
+				buttonPrev = null;
+			}
+
 			if (labelTitle != null) {
 				labelTitle.Dispose ();
 				labelTitle = null;
+			}
+
+			if (imgCourse != null) {
+				imgCourse.Dispose ();
+				imgCourse = null;
+			}
+
+			if (textViewDescription != null) {
+				textViewDescription.Dispose ();
+				textViewDescription = null;
 			}
 		}
 	}
