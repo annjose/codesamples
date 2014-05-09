@@ -34,12 +34,12 @@ namespace MyXam.Droid
 
             buttonPrev.Click += delegate 
             {
-                imageView.SetImageResource(Resource.Drawable.img3);
+                imageView.SetImageResource(Resource.Drawable.flower1);
                 textTitle.Text = "Prev button clicked"; 
             };
             buttonNext.Click += delegate 
             {
-                imageView.SetImageResource(Resource.Drawable.img2);
+                imageView.SetImageResource(Resource.Drawable.flower2);
                 textTitle.Text = "Next button clicked"; 
             };
         }
