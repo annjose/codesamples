@@ -24,6 +24,8 @@ namespace MyXam.iOS
 			base.ViewDidLoad ();
 			
 			// Perform any additional setup after loading the view, typically from a nib.
+            buttonPrev.TouchUpInside += delegate { labelTitle.Text = "Prev clicked!"; };
+            buttonNext.TouchUpInside += delegate { labelTitle.Text = "Next clicked!"; };
 		}
 	}
 }
