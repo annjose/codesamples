@@ -24,6 +24,8 @@ class HelloFastlaneTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let actual = 2
+        XCTAssertEqual(actual, 2, "Expected 2; but found \(actual)")
     }
     
     func testPerformanceExample() {
