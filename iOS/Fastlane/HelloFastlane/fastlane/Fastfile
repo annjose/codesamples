@@ -35,6 +35,7 @@ platform :ios do
   lane :beta do
     # match(type: "appstore") # more information: https://codesigning.guide
     gym(scheme: "HelloFastlane") # Build your app - more options available
+    ENV["DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS"] = "-t DAV"
     pilot
 
     # sh "your_script.sh"
